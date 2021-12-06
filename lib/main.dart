@@ -1,4 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:ipari/data/api/api_service.dart';
+import 'package:ipari/data/model/wisata.dart';
+import 'package:ipari/provider/wisata_provider.dart';
+import 'package:ipari/ui/about_page.dart';
+import 'package:ipari/ui/detail_page.dart';
+import 'package:ipari/ui/favorite_page.dart';
+import 'package:ipari/ui/main_page.dart';
+import 'package:ipari/ui/note_page.dart';
+import 'package:ipari/ui/splash_screen.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -9,59 +19,25 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (_) => WisataProvider(apiService: ApiService()),
         ),
+      ],
+      child: MaterialApp(
+        initialRoute: SplashScreen.routeName,
+        routes: {
+          SplashScreen.routeName: (context) => SplashScreen(),
+          MainPage.routeName: (context) => const MainPage(),
+          FavoritePage.routeName: (context) => const FavoritePage(),
+          AboutPage.routeName: (context) => const AboutPage(),
+          NotePage.routeName: (context) => const NotePage(),
+          DetailPage.routeName: (context) => DetailPage(
+                wisata: ModalRoute.of(context)?.settings.arguments as Wisata,
+              ),
+        },
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
