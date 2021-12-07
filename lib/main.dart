@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:ipari/data/api/api_service.dart';
+import 'package:ipari/data/db/database_helper.dart';
 import 'package:ipari/data/model/wisata.dart';
+import 'package:ipari/provider/database_provider.dart';
 import 'package:ipari/provider/wisata_provider.dart';
 import 'package:ipari/ui/about_page.dart';
 import 'package:ipari/ui/detail_page.dart';
@@ -23,6 +25,9 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(
           create: (_) => WisataProvider(apiService: ApiService()),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => DatabaseProvider(databaseHelper: DatabaseHelper()),
         ),
       ],
       child: MaterialApp(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ipari/data/model/wisata.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:ipari/widget/favorite_button.dart';
 import 'dart:async';
 import 'package:maps_launcher/maps_launcher.dart';
 
@@ -103,7 +104,7 @@ class _DetailPageState extends State<DetailPage> {
                             onPressed: () => MapsLauncher.launchCoordinates(
                                 double.parse(widget.wisata.latitude),
                                 double.parse(widget.wisata.longitude),
-                                'Google Headquarters are here'),
+                                widget.wisata.name),
                           ),
                         ),
                       ],
@@ -114,29 +115,29 @@ class _DetailPageState extends State<DetailPage> {
               Container(
                 padding: const EdgeInsets.only(left: 8.0),
                 margin: const EdgeInsets.only(top: 8.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      widget.wisata.name,
-                      style: Theme.of(context).textTheme.headline5,
-                    ),
-                    // FavoriteButton(restaurant: restaurants),
-                  ],
+                child: Text(
+                  widget.wisata.name,
+                  style: Theme.of(context).textTheme.headline5,
                 ),
               ),
               const SizedBox(height: 5),
-              Container(
-                padding: const EdgeInsets.only(left: 8.0, bottom: 4.0),
-                child: Row(
-                  children: [
-                    const Icon(Icons.location_on_outlined),
-                    Text(
-                      widget.wisata.province,
-                      style: Theme.of(context).textTheme.subtitle1,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                    padding: const EdgeInsets.only(left: 8.0, bottom: 4.0),
+                    child: Row(
+                      children: [
+                        const Icon(Icons.location_on_outlined),
+                        Text(
+                          widget.wisata.province,
+                          style: Theme.of(context).textTheme.subtitle1,
+                        ),
+                      ],
                     ),
-                  ],
-                ),
+                  ),
+                  FavoriteButton(wisata: widget.wisata)
+                ],
               ),
               Container(
                 padding: const EdgeInsets.all(4.0),

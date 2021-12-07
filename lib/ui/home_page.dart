@@ -32,6 +32,16 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: SizedBox(
+          height: 75,
+          width: 150,
+          child: Image.asset('assets/Logo Font.png'),
+        ),
+        elevation: 0,
+        backgroundColor: primaryColor,
+        centerTitle: true,
+      ),
       body: _listWidget[_selectedTab],
       extendBody: true,
       bottomNavigationBar: Padding(

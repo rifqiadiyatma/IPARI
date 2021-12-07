@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:ipari/common/styles.dart';
 import 'package:ipari/data/model/wisata.dart';
 import 'package:ipari/provider/wisata_provider.dart';
 import 'package:ipari/ui/detail_page.dart';
@@ -13,16 +12,6 @@ class MainPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: SizedBox(
-          height: 75,
-          width: 150,
-          child: Image.asset('assets/Logo Font.png'),
-        ),
-        elevation: 0,
-        backgroundColor: primaryColor,
-        centerTitle: true,
-      ),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -111,36 +100,34 @@ class MainPage extends StatelessWidget {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(8.0),
           ),
-          child: Flexible(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                Hero(
-                  tag: wisata.urlImage,
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(8.0),
-                    child: Image.network(wisata.urlImage,
-                        fit: BoxFit.fill, height: 110),
-                  ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Hero(
+                tag: wisata.urlImage,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(8.0),
+                  child: Image.network(wisata.urlImage,
+                      fit: BoxFit.fill, height: 110),
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    wisata.name.toUpperCase(),
-                    overflow: TextOverflow.ellipsis,
-                    maxLines: 1,
-                  ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  wisata.name.toUpperCase(),
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 1,
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 8.0, right: 8.0),
-                  child: Text(
-                    wisata.province,
-                    overflow: TextOverflow.ellipsis,
-                    maxLines: 1,
-                  ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+                child: Text(
+                  wisata.province,
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 1,
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),
