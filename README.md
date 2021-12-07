@@ -1,5 +1,5 @@
-# ipari
-
+# IPARI
+IPARI (Informasi Pariwisata Indonesia) adalah aplikasi pada android yang menggunakan framwork flutter, dimana IPARI mempunyai tujuan memberikan informasi terkait destinasi pariwisata yang ada di Indonesia, selain itu...
 A new Flutter project.
 
 ## Getting Started
