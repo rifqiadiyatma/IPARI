@@ -1,5 +1,5 @@
-# ipari
-
+# IPARI
+IPARI (Informasi Pariwisata Indonesia) was a aplication base on android and use Flutter for framework
 A new Flutter project.
 
 ## Getting Started
