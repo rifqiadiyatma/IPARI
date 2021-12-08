@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ipari/common/styles.dart';
 import 'package:ipari/data/model/wisata.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:ipari/widget/favorite_button.dart';
@@ -96,16 +97,7 @@ class _DetailPageState extends State<DetailPage> {
                         ),
                         CircleAvatar(
                           backgroundColor: Colors.white,
-                          child: IconButton(
-                            icon: const Icon(
-                              Icons.flight,
-                              color: Colors.black,
-                            ),
-                            onPressed: () => MapsLauncher.launchCoordinates(
-                                double.parse(widget.wisata.latitude),
-                                double.parse(widget.wisata.longitude),
-                                widget.wisata.name),
-                          ),
+                          child: FavoriteButton(wisata: widget.wisata),
                         ),
                       ],
                     ),
@@ -121,29 +113,23 @@ class _DetailPageState extends State<DetailPage> {
                 ),
               ),
               const SizedBox(height: 5),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Container(
-                    padding: const EdgeInsets.only(left: 8.0, bottom: 4.0),
-                    child: Row(
-                      children: [
-                        const Icon(Icons.location_on_outlined),
-                        Text(
-                          widget.wisata.province,
-                          style: Theme.of(context).textTheme.subtitle1,
-                        ),
-                      ],
+              Container(
+                padding: const EdgeInsets.only(left: 8.0, bottom: 4.0),
+                child: Row(
+                  children: [
+                    const Icon(Icons.location_on_outlined),
+                    Text(
+                      widget.wisata.province,
+                      style: Theme.of(context).textTheme.subtitle1,
                     ),
-                  ),
-                  FavoriteButton(wisata: widget.wisata)
-                ],
+                  ],
+                ),
               ),
               Container(
                 padding: const EdgeInsets.all(4.0),
                 height: 50,
                 child: Card(
-                  color: Colors.red[600],
+                  color: primaryColor,
                   margin: const EdgeInsets.all(4.0),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10.0),
@@ -153,7 +139,7 @@ class _DetailPageState extends State<DetailPage> {
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
                       widget.wisata.category,
-                      style: const TextStyle(color: Colors.white),
+                      style: const TextStyle(color: secondaryColor),
                     ),
                   ),
                 ),
@@ -178,6 +164,14 @@ class _DetailPageState extends State<DetailPage> {
               _map(),
             ],
           ),
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () => MapsLauncher.launchCoordinates(
+              double.parse(widget.wisata.latitude),
+              double.parse(widget.wisata.longitude),
+              widget.wisata.name),
+          child: const Icon(Icons.map),
+          backgroundColor: primaryColor,
         ),
       ),
     );

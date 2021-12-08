@@ -1,14 +1,12 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:ipari/common/styles.dart';
 import 'package:ipari/ui/home_page.dart';
-import 'package:ipari/ui/main_page.dart';
 
 class SplashScreen extends StatefulWidget {
   static const routeName = '/splash_screen';
 
-  SplashScreen({Key? key}) : super(key: key);
+  const SplashScreen({Key? key}) : super(key: key);
 
   @override
   _SplashScreenState createState() => _SplashScreenState();
@@ -23,7 +21,7 @@ class _SplashScreenState extends State<SplashScreen> {
       () => Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (context) => HomePage(),
+          builder: (context) => const HomePage(),
         ),
       ),
     );

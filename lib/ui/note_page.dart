@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ipari/common/styles.dart';
 
 class NotePage extends StatelessWidget {
   static const routeName = '/note_page';
@@ -6,6 +7,8 @@ class NotePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      backgroundColor: bgColor,
+    );
   }
 }

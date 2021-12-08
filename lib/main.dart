@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         initialRoute: SplashScreen.routeName,
         routes: {
-          SplashScreen.routeName: (context) => SplashScreen(),
+          SplashScreen.routeName: (context) => const SplashScreen(),
           MainPage.routeName: (context) => const MainPage(),
           FavoritePage.routeName: (context) => const FavoritePage(),
           AboutPage.routeName: (context) => const AboutPage(),

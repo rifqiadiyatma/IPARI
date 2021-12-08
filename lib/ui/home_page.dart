@@ -7,7 +7,7 @@ import 'package:ipari/ui/main_page.dart';
 import 'package:ipari/ui/note_page.dart';
 
 class HomePage extends StatefulWidget {
-  HomePage({Key? key}) : super(key: key);
+  const HomePage({Key? key}) : super(key: key);
 
   @override
   _HomePageState createState() => _HomePageState();
@@ -15,12 +15,6 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int _selectedTab = 0;
-
-  // void _handleIndexChanged(int i) {
-  //   setState(() {
-  //     _selectedTab = values[i];
-  //   });
-  // }
 
   final List<Widget> _listWidget = [
     const MainPage(),
@@ -45,35 +39,52 @@ class _HomePageState extends State<HomePage> {
       body: _listWidget[_selectedTab],
       extendBody: true,
       bottomNavigationBar: Padding(
-        padding: EdgeInsets.only(bottom: 5),
+        padding: const EdgeInsets.only(bottom: 5),
         child: DotNavigationBar(
-          margin: EdgeInsets.only(left: 10, right: 10),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.shade400,
+              blurRadius: 3.0,
+              offset: const Offset(
+                3.0,
+                3.0,
+              ),
+            ),
+          ],
+          margin: const EdgeInsets.only(left: 5, right: 5),
           currentIndex: _selectedTab,
           dotIndicatorColor: primaryColor,
-          unselectedItemColor: Colors.grey[300],
-          // enableFloatingNavBar: false,
+          unselectedItemColor: primaryColor,
           items: [
             /// Home
             DotNavigationBarItem(
-              icon: Icon(Icons.home),
+              icon: _selectedTab == 0
+                  ? const Icon(Icons.home)
+                  : const Icon(Icons.home_outlined),
               selectedColor: primaryColor,
             ),
 
             /// Likes
             DotNavigationBarItem(
-              icon: Icon(Icons.favorite),
+              icon: _selectedTab == 1
+                  ? const Icon(Icons.favorite)
+                  : const Icon(Icons.favorite_outline),
               selectedColor: primaryColor,
             ),
 
             /// Search
             DotNavigationBarItem(
-              icon: Icon(Icons.note),
+              icon: _selectedTab == 2
+                  ? const Icon(Icons.note)
+                  : const Icon(Icons.note_outlined),
               selectedColor: primaryColor,
             ),
 
             /// Profile
             DotNavigationBarItem(
-              icon: Icon(Icons.person),
+              icon: _selectedTab == 3
+                  ? const Icon(Icons.info)
+                  : const Icon(Icons.info_outline),
               selectedColor: primaryColor,
             ),
           ],

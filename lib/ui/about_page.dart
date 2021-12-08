@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ipari/common/styles.dart';
 
 class AboutPage extends StatelessWidget {
   static const routeName = '/about_page';
@@ -6,6 +7,8 @@ class AboutPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      backgroundColor: bgColor,
+    );
   }
 }

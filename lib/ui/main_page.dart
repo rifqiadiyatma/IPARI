@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ipari/common/styles.dart';
 import 'package:ipari/data/model/wisata.dart';
 import 'package:ipari/provider/wisata_provider.dart';
 import 'package:ipari/ui/detail_page.dart';
@@ -12,6 +13,7 @@ class MainPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: bgColor,
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -68,14 +70,18 @@ class MainPage extends StatelessWidget {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12),
             color: Colors.white,
-            border: Border.all(color: Colors.black26),
+            border: Border.all(color: primaryColor),
           ),
           child: Form(
             child: TextFormField(
               maxLines: 1,
               decoration: const InputDecoration(
                 hintText: "Mau Pergi Kemana Hari Ini?",
-                prefixIcon: Icon(Icons.search),
+                hintStyle: TextStyle(color: primaryColor),
+                prefixIcon: Icon(
+                  Icons.search,
+                  color: primaryColor,
+                ),
                 border: InputBorder.none,
               ),
               onChanged: (query) {
@@ -96,35 +102,42 @@ class MainPage extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: Card(
           elevation: 2.0,
-          color: Colors.white,
+          color: secondaryColor,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(8.0),
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Hero(
-                tag: wisata.urlImage,
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(8.0),
-                  child: Image.network(wisata.urlImage,
-                      fit: BoxFit.fill, height: 110),
+              Flexible(
+                flex: 3,
+                child: Hero(
+                  tag: wisata.urlImage,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(8.0),
+                    child: Image.network(wisata.urlImage,
+                        fit: BoxFit.fill, height: 110),
+                  ),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  wisata.name.toUpperCase(),
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 1,
+              Flexible(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    wisata.name.toUpperCase(),
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 1,
+                  ),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(left: 8.0, right: 8.0),
-                child: Text(
-                  wisata.province,
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 1,
+              Flexible(
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+                  child: Text(
+                    wisata.province,
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 1,
+                  ),
                 ),
               ),
             ],

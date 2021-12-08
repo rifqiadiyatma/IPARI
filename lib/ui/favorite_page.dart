@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ipari/common/styles.dart';
 import 'package:ipari/data/model/wisata.dart';
 import 'package:ipari/provider/database_provider.dart';
 import 'package:ipari/ui/detail_page.dart';
@@ -12,6 +13,7 @@ class FavoritePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: bgColor,
       body: _buildList(),
     );
   }
@@ -41,61 +43,49 @@ class FavoritePage extends StatelessWidget {
   }
 
   Widget _buildWisataItem(BuildContext context, Wisata wisata) {
-    return Material(
-      child: Card(
-        elevation: 2.0,
-        margin: const EdgeInsets.fromLTRB(12.0, 4.0, 12.0, 4.0),
-        color: Colors.white,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8.0),
-        ),
-        child: ListTile(
-          contentPadding:
-              const EdgeInsets.symmetric(vertical: 10.0, horizontal: 4.0),
-          leading: Hero(
-            tag: wisata.urlImage,
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(8.0),
-              child: Image.network(
-                wisata.urlImage,
-                fit: BoxFit.cover,
-                width: 100,
-              ),
+    return Card(
+      elevation: 2.0,
+      margin: const EdgeInsets.fromLTRB(12.0, 4.0, 12.0, 4.0),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(8.0),
+      ),
+      child: ListTile(
+        contentPadding:
+            const EdgeInsets.symmetric(vertical: 10.0, horizontal: 4.0),
+        leading: Hero(
+          tag: wisata.urlImage,
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(8.0),
+            child: Image.network(
+              wisata.urlImage,
+              fit: BoxFit.cover,
+              width: 100,
             ),
           ),
-          title: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              const Icon(
-                Icons.holiday_village_outlined,
-              ),
-              Expanded(
-                child: Text(
-                  wisata.name,
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 1,
-                  style: Theme.of(context).textTheme.bodyText1,
-                ),
-              ),
-            ],
-          ),
-          subtitle: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              const Icon(
-                Icons.location_on_outlined,
-              ),
-              Text(
-                wisata.province,
-                style: Theme.of(context).textTheme.bodyText2,
-              ),
-            ],
-          ),
-          onTap: () {
-            Navigator.pushNamed(context, DetailPage.routeName,
-                arguments: wisata);
-          },
         ),
+        title: Expanded(
+          child: Text(
+            wisata.name.toUpperCase(),
+            overflow: TextOverflow.ellipsis,
+            maxLines: 1,
+            style: Theme.of(context).textTheme.bodyText1,
+          ),
+        ),
+        subtitle: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const Icon(
+              Icons.location_on_outlined,
+            ),
+            Text(
+              wisata.province,
+              style: Theme.of(context).textTheme.bodyText2,
+            ),
+          ],
+        ),
+        onTap: () {
+          Navigator.pushNamed(context, DetailPage.routeName, arguments: wisata);
+        },
       ),
     );
   }
