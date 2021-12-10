@@ -1,3 +1,4 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:ipari/common/styles.dart';
 import 'package:ipari/data/model/wisata.dart';
@@ -16,12 +17,82 @@ class MainPage extends StatelessWidget {
       backgroundColor: bgColor,
       body: SingleChildScrollView(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             _buildSearch(),
+            const SizedBox(height: 10),
+            _imgCarousel(),
+            const SizedBox(
+              height: 8.0,
+            ),
+            Container(
+              padding: const EdgeInsets.all(10.0),
+              child: const Text(
+                'List Wisata',
+                style: TextStyle(
+                  color: primaryColor,
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
             _buildList(),
           ],
         ),
       ),
+    );
+  }
+
+  CarouselSlider _imgCarousel() {
+    return CarouselSlider(
+      options: CarouselOptions(
+        enlargeCenterPage: true,
+        autoPlay: true,
+        enableInfiniteScroll: true,
+        autoPlayAnimationDuration: const Duration(milliseconds: 1000),
+      ),
+      items: [
+        Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10.0),
+            image: const DecorationImage(
+                image: NetworkImage(
+                  'https://images.unsplash.com/photo-1559964365-c42b96fa3ddd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=725&q=80',
+                ),
+                fit: BoxFit.fill),
+          ),
+        ),
+        Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10.0),
+            image: const DecorationImage(
+                image: NetworkImage(
+                  'https://images.unsplash.com/photo-1519112232436-9923c6ba3d26?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80',
+                ),
+                fit: BoxFit.fill),
+          ),
+        ),
+        Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10.0),
+            image: const DecorationImage(
+                image: NetworkImage(
+                  'https://images.unsplash.com/photo-1610601403310-7626f825bef5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80',
+                ),
+                fit: BoxFit.fill),
+          ),
+        ),
+        Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10.0),
+            image: const DecorationImage(
+                image: NetworkImage(
+                  'https://images.unsplash.com/photo-1551523891-ef1cebdca797?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=725&q=80',
+                ),
+                fit: BoxFit.fill),
+          ),
+        ),
+      ],
     );
   }
 
@@ -115,8 +186,11 @@ class MainPage extends StatelessWidget {
                   tag: wisata.urlImage,
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(8.0),
-                    child: Image.network(wisata.urlImage,
-                        fit: BoxFit.fill, height: 110),
+                    child: Image.network(
+                      wisata.urlImage,
+                      fit: BoxFit.fill,
+                      height: 110,
+                    ),
                   ),
                 ),
               ),
