@@ -59,9 +59,17 @@ class _DetailPageState extends State<DetailPage> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: SingleChildScrollView(
+    return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => MapsLauncher.launchCoordinates(
+            double.parse(widget.wisata.latitude),
+            double.parse(widget.wisata.longitude),
+            widget.wisata.name),
+        child: const Icon(Icons.map),
+        backgroundColor: primaryColor,
+      ),
+      body: SafeArea(
+        child: SingleChildScrollView(
           child: Column(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -164,14 +172,6 @@ class _DetailPageState extends State<DetailPage> {
               _map(),
             ],
           ),
-        ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () => MapsLauncher.launchCoordinates(
-              double.parse(widget.wisata.latitude),
-              double.parse(widget.wisata.longitude),
-              widget.wisata.name),
-          child: const Icon(Icons.map),
-          backgroundColor: primaryColor,
         ),
       ),
     );

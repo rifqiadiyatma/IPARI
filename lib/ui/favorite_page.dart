@@ -13,6 +13,16 @@ class FavoritePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: SizedBox(
+          height: 75,
+          width: 150,
+          child: Image.asset('assets/Logo Font.png'),
+        ),
+        elevation: 0,
+        backgroundColor: primaryColor,
+        centerTitle: true,
+      ),
       backgroundColor: bgColor,
       body: _buildList(),
     );
@@ -63,13 +73,15 @@ class FavoritePage extends StatelessWidget {
             ),
           ),
         ),
-        title: Expanded(
-          child: Text(
-            wisata.name.toUpperCase(),
-            overflow: TextOverflow.ellipsis,
-            maxLines: 1,
-            style: Theme.of(context).textTheme.bodyText1,
-          ),
+        title: Wrap(
+          children: [
+            Text(
+              wisata.name.toUpperCase(),
+              overflow: TextOverflow.ellipsis,
+              maxLines: 1,
+              style: Theme.of(context).textTheme.bodyText1,
+            ),
+          ],
         ),
         subtitle: Row(
           mainAxisSize: MainAxisSize.min,

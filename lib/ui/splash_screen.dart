@@ -1,7 +1,9 @@
 import 'dart:async';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:ipari/common/styles.dart';
 import 'package:ipari/ui/home_page.dart';
+import 'package:ipari/ui/login_page.dart';
 
 class SplashScreen extends StatefulWidget {
   static const routeName = '/splash_screen';
@@ -21,7 +23,9 @@ class _SplashScreenState extends State<SplashScreen> {
       () => Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (context) => const HomePage(),
+          builder: (context) => FirebaseAuth.instance.currentUser == null
+              ? const LoginPage()
+              : const HomePage(),
         ),
       ),
     );

@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "835125176896",
+    "firebase_url": "https://ipari-dad8f-default-rtdb.firebaseio.com",
+    "project_id": "ipari-dad8f",
+    "storage_bucket": "ipari-dad8f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:835125176896:android:a173457a9de128639dcda5",
+        "android_client_info": {
+          "package_name": "com.example.ipari"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "835125176896-7b6ibu3qdklr8io2tksfuna2dn6cn84s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD2oh_PU_0K0XRmGIwX37DftmL2XvIjisY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "835125176896-7b6ibu3qdklr8io2tksfuna2dn6cn84s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
