@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:dot_navigation_bar/dot_navigation_bar.dart';
 import 'package:ipari/common/styles.dart';
-import 'package:ipari/ui/about_page.dart';
+import 'package:ipari/ui/profile_page.dart';
 import 'package:ipari/ui/favorite_page.dart';
 import 'package:ipari/ui/main_page.dart';
-import 'package:ipari/ui/note_page.dart';
+import 'package:ipari/ui/about_page.dart';
 import 'package:ipari/ui/review_page.dart';
 
 class HomePage extends StatefulWidget {
@@ -20,8 +20,8 @@ class _HomePageState extends State<HomePage> {
   final List<Widget> _listWidget = [
     const MainPage(),
     const FavoritePage(),
-    const NotePage(),
     const ReviewPage(),
+    const ProfilePage(),
   ];
 
   @override
@@ -61,14 +61,14 @@ class _HomePageState extends State<HomePage> {
             ),
             DotNavigationBarItem(
               icon: _selectedTab == 2
-                  ? const Icon(Icons.note)
-                  : const Icon(Icons.note_outlined),
+                  ? const Icon(Icons.explore)
+                  : const Icon(Icons.explore_outlined),
               selectedColor: primaryColor,
             ),
             DotNavigationBarItem(
               icon: _selectedTab == 3
-                  ? const Icon(Icons.people)
-                  : const Icon(Icons.people_outline),
+                  ? const Icon(Icons.person)
+                  : const Icon(Icons.person_outline),
               selectedColor: primaryColor,
             ),
           ],

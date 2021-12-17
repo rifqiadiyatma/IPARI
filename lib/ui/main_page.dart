@@ -6,6 +6,7 @@ import 'package:ipari/provider/wisata_provider.dart';
 import 'package:ipari/ui/detail_page.dart';
 import 'package:ipari/utils/result_state.dart';
 import 'package:provider/provider.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class MainPage extends StatelessWidget {
   static const routeName = '/main_page';
@@ -114,7 +115,8 @@ class MainPage extends StatelessWidget {
         } else if (state.state == ResultState.hasData) {
           return GridView.builder(
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2),
+              crossAxisCount: 2,
+            ),
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
             itemCount: state.response.data.length,
@@ -180,7 +182,7 @@ class MainPage extends StatelessWidget {
       onTap: () =>
           Navigator.pushNamed(context, DetailPage.routeName, arguments: wisata),
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.symmetric(horizontal: 6.0, vertical: 4.0),
         child: Card(
           elevation: 2.0,
           color: secondaryColor,
@@ -190,38 +192,43 @@ class MainPage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Flexible(
-                flex: 3,
+              Expanded(
                 child: Hero(
                   tag: wisata.urlImage,
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(8.0),
-                    child: Image.network(
-                      wisata.urlImage,
+                    child: CachedNetworkImage(
+                      imageUrl: wisata.urlImage,
+                      placeholder: (context, url) => const SizedBox(
+                        child: DecoratedBox(
+                          decoration: BoxDecoration(
+                            color: Colors.grey,
+                          ),
+                        ),
+                      ),
+                      errorWidget: (context, url, error) =>
+                          const Icon(Icons.dangerous_rounded),
                       fit: BoxFit.fill,
                       height: 110,
                     ),
                   ),
                 ),
               ),
-              Flexible(
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    wisata.name.toUpperCase(),
-                    overflow: TextOverflow.ellipsis,
-                    maxLines: 1,
-                  ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  wisata.name.toUpperCase(),
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 1,
                 ),
               ),
-              Flexible(
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 8.0, right: 8.0),
-                  child: Text(
-                    wisata.province,
-                    overflow: TextOverflow.ellipsis,
-                    maxLines: 1,
-                  ),
+              Padding(
+                padding:
+                    const EdgeInsets.only(left: 8.0, right: 8.0, bottom: 8.0),
+                child: Text(
+                  wisata.province,
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 1,
                 ),
               ),
             ],

@@ -1,4 +1,4 @@
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:ipari/common/styles.dart';
@@ -6,7 +6,6 @@ import 'package:ipari/data/db/datetime_helper.dart';
 import 'package:ipari/data/model/model_review.dart';
 import 'package:ipari/ui/add_review_page.dart';
 import 'package:ipari/ui/detail_review.dart';
-import 'package:ipari/ui/login_page.dart';
 
 class ReviewPage extends StatefulWidget {
   static const routeName = '/review_page';
@@ -17,12 +16,12 @@ class ReviewPage extends StatefulWidget {
 }
 
 class _ReviewPageState extends State<ReviewPage> {
-  User? user;
+  // User? user;
   late DatabaseReference? refUser;
 
   @override
   void initState() {
-    user = FirebaseAuth.instance.currentUser;
+    // user = FirebaseAuth.instance.currentUser;
     refUser = FirebaseDatabase.instance.ref().child('reviews');
     super.initState();
   }
@@ -41,17 +40,6 @@ class _ReviewPageState extends State<ReviewPage> {
               Navigator.pushNamed(context, AddReviewPage.routeName);
             },
             icon: const Icon(Icons.add),
-          ),
-          IconButton(
-            onPressed: () {
-              FirebaseAuth.instance.signOut();
-
-              Navigator.of(context)
-                  .pushReplacement(MaterialPageRoute(builder: (context) {
-                return const LoginPage();
-              }));
-            },
-            icon: const Icon(Icons.logout),
           ),
         ],
       ),
@@ -111,8 +99,18 @@ class _ReviewPageState extends State<ReviewPage> {
                                     topLeft: Radius.circular(10.0),
                                     topRight: Radius.circular(10.0),
                                   ),
-                                  child: Image.network(
-                                    review.imgUrl,
+                                  child: CachedNetworkImage(
+                                    imageUrl: review.imgUrl,
+                                    placeholder: (context, url) =>
+                                        const SizedBox(
+                                      child: DecoratedBox(
+                                        decoration: BoxDecoration(
+                                          color: Colors.grey,
+                                        ),
+                                      ),
+                                    ),
+                                    errorWidget: (context, url, error) =>
+                                        const Icon(Icons.dangerous_rounded),
                                     fit: BoxFit.fill,
                                     height: MediaQuery.of(context).size.height *
                                         .28,

@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:ipari/common/styles.dart';
 import 'package:ipari/data/model/wisata.dart';
@@ -61,14 +62,23 @@ class FavoritePage extends StatelessWidget {
       ),
       child: ListTile(
         contentPadding:
-            const EdgeInsets.symmetric(vertical: 10.0, horizontal: 4.0),
+            const EdgeInsets.symmetric(vertical: 8.0, horizontal: 4.0),
         leading: Hero(
           tag: wisata.urlImage,
           child: ClipRRect(
             borderRadius: BorderRadius.circular(8.0),
-            child: Image.network(
-              wisata.urlImage,
-              fit: BoxFit.cover,
+            child: CachedNetworkImage(
+              imageUrl: wisata.urlImage,
+              placeholder: (context, url) => const SizedBox(
+                child: DecoratedBox(
+                  decoration: BoxDecoration(
+                    color: Colors.grey,
+                  ),
+                ),
+              ),
+              errorWidget: (context, url, error) =>
+                  const Icon(Icons.dangerous_rounded),
+              fit: BoxFit.fill,
               width: 100,
             ),
           ),

@@ -6,14 +6,14 @@ import 'package:ipari/data/model/model_review.dart';
 import 'package:ipari/data/model/wisata.dart';
 import 'package:ipari/provider/database_provider.dart';
 import 'package:ipari/provider/wisata_provider.dart';
-import 'package:ipari/ui/about_page.dart';
+import 'package:ipari/ui/profile_page.dart';
 import 'package:ipari/ui/add_review_page.dart';
 import 'package:ipari/ui/detail_page.dart';
 import 'package:ipari/ui/detail_review.dart';
 import 'package:ipari/ui/favorite_page.dart';
 import 'package:ipari/ui/login_page.dart';
 import 'package:ipari/ui/main_page.dart';
-import 'package:ipari/ui/note_page.dart';
+import 'package:ipari/ui/about_page.dart';
 import 'package:ipari/ui/register_page.dart';
 import 'package:ipari/ui/review_page.dart';
 import 'package:ipari/ui/splash_screen.dart';
@@ -48,8 +48,8 @@ class MyApp extends StatelessWidget {
           RegisterPage.routeName: (context) => const RegisterPage(),
           ReviewPage.routeName: (context) => const ReviewPage(),
           FavoritePage.routeName: (context) => const FavoritePage(),
+          ProfilePage.routeName: (context) => const ProfilePage(),
           AboutPage.routeName: (context) => const AboutPage(),
-          NotePage.routeName: (context) => const NotePage(),
           DetailReview.routeName: (context) => DetailReview(
                 review:
                     ModalRoute.of(context)?.settings.arguments as ModelReview,
