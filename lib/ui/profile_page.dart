@@ -10,6 +10,7 @@ import 'package:ipari/data/model/model_user.dart';
 import 'package:ipari/ui/about_page.dart';
 import 'package:ipari/ui/login_page.dart';
 import 'package:ipari/widget/show_toast.dart';
+import 'package:ndialog/ndialog.dart';
 
 class ProfilePage extends StatefulWidget {
   static const routeName = '/profile_page';
@@ -70,48 +71,51 @@ class _ProfilePageState extends State<ProfilePage> {
       backgroundColor: bgColor,
       body: modelUser == null
           ? const Center(child: CircularProgressIndicator())
-          : Center(
-              child: Column(
-                children: [
-                  CircleAvatar(
-                    radius: 80,
-                    backgroundImage: modelUser!.avatar == ''
-                        ? const NetworkImage(
-                            'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80')
-                        : NetworkImage(modelUser!.avatar),
-                  ),
-                  Text('Username : ' + modelUser!.username),
-                  Text('Email : ' + modelUser!.email),
-                  Text('Created Account From : ' +
-                      dateConverter(modelUser!.time)),
-                  const SizedBox(
-                    height: 30,
-                  ),
-                  ElevatedButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, AboutPage.routeName);
-                    },
-                    child: const Text('About'),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  ElevatedButton(
-                    onPressed: () {
-                      FirebaseAuth.instance.signOut();
+          : SingleChildScrollView(
+              child: Center(
+                child: Column(
+                  children: [
+                    CircleAvatar(
+                      radius: 80,
+                      backgroundImage: modelUser!.avatar == ''
+                          ? const NetworkImage(
+                              'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80')
+                          : NetworkImage(modelUser!.avatar),
+                    ),
+                    Text('Username : ' + modelUser!.username),
+                    Text('Email : ' + modelUser!.email),
+                    Text('Created Account From : ' +
+                        dateConverter(modelUser!.time)),
+                    const SizedBox(
+                      height: 30,
+                    ),
+                    ElevatedButton(
+                      onPressed: () {
+                        Navigator.pushNamed(context, AboutPage.routeName);
+                      },
+                      child: const Text('About'),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    ElevatedButton(
+                      onPressed: () {
+                        FirebaseAuth.instance.signOut();
 
-                      Navigator.of(context).pushReplacement(
-                        MaterialPageRoute(
-                          builder: (context) {
-                            return const LoginPage();
-                          },
-                        ),
-                      );
-                      showToastMsg('Pengguna Berhasil LogOut', Colors.green);
-                    },
-                    child: const Text('LogOut'),
-                  ),
-                ],
+                        Navigator.of(context).pushReplacement(
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return const LoginPage();
+                            },
+                          ),
+                        );
+
+                        showToastMsg('Pengguna Berhasil Logout', Colors.green);
+                      },
+                      child: const Text('Logout'),
+                    ),
+                  ],
+                ),
               ),
             ),
     );

@@ -80,8 +80,7 @@ class _ReviewPageState extends State<ReviewPage> {
                           context, DetailReview.routeName,
                           arguments: review),
                       child: Container(
-                        margin: const EdgeInsets.only(bottom: 4.0),
-                        padding: const EdgeInsets.all(8.0),
+                        padding: const EdgeInsets.symmetric(vertical: 10.0),
                         child: Card(
                           elevation: 2.0,
                           color: secondaryColor,
@@ -89,8 +88,7 @@ class _ReviewPageState extends State<ReviewPage> {
                             borderRadius: BorderRadius.circular(8.0),
                           ),
                           child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
                             children: [
                               Hero(
                                 tag: review.imgUrl,
@@ -112,41 +110,99 @@ class _ReviewPageState extends State<ReviewPage> {
                                     errorWidget: (context, url, error) =>
                                         const Icon(Icons.dangerous_rounded),
                                     fit: BoxFit.fill,
-                                    height: MediaQuery.of(context).size.height *
-                                        .28,
                                     width:
                                         MediaQuery.of(context).size.width * 1,
+                                    height: 250,
                                   ),
                                 ),
                               ),
                               const SizedBox(
                                 height: 8.0,
                               ),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Text(review.name),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Flexible(
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(
+                                        left: 8.0,
+                                        right: 8.0,
+                                      ),
+                                      child: Text(
+                                        review.name,
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headline6,
+                                        maxLines: 1,
+                                        overflow: TextOverflow.ellipsis,
+                                      ),
+                                    ),
+                                  ),
+                                  Row(
+                                    children: [
+                                      const Icon(
+                                        Icons.star,
+                                        color: Colors.amber,
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                          right: 8.0,
+                                        ),
+                                        child: Text(
+                                          review.valueRating.toString(),
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyText1,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
                               ),
+                              const SizedBox(
+                                height: 4.0,
+                              ),
+                              Row(
+                                children: [
+                                  const Padding(
+                                    padding: EdgeInsets.only(left: 5.0),
+                                    child: Icon(Icons.location_on_outlined),
+                                  ),
+                                  Flexible(
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(
+                                        right: 8.0,
+                                      ),
+                                      child: Text(
+                                        review.location,
+                                        maxLines: 1,
+                                        overflow: TextOverflow.ellipsis,
+                                        style:
+                                            Theme.of(context).textTheme.caption,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(
+                                height: 8.0,
+                              ),
+                              const Divider(),
                               Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Text(
-                                  dateConverter(review.time),
+                                padding: const EdgeInsets.only(
+                                  right: 8.0,
+                                  bottom: 8.0,
                                 ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Text(review.valueRating.toString()),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Text('Post from ' + review.username),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Text(review.location),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Text(review.description),
+                                child: Text(
+                                  dateConverter(review.time) +
+                                      ' - Review by ' +
+                                      review.username,
+                                  style: Theme.of(context).textTheme.overline,
+                                  textAlign: TextAlign.right,
+                                  maxLines: 1,
+                                  overflow: TextOverflow.fade,
+                                ),
                               ),
                             ],
                           ),

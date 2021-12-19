@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:ipari/common/styles.dart';
 import 'package:ipari/data/model/wisata.dart';
@@ -61,17 +62,15 @@ class _DetailPageState extends State<DetailPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-        onPressed: () => MapsLauncher.launchCoordinates(
-            double.parse(widget.wisata.latitude),
-            double.parse(widget.wisata.longitude),
-            widget.wisata.name),
+        onPressed: () => MapsLauncher.launchQuery(
+            widget.wisata.name + ' ' + widget.wisata.province),
         child: const Icon(Icons.map),
         backgroundColor: primaryColor,
       ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
-            mainAxisSize: MainAxisSize.min,
+            // mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Stack(
@@ -84,7 +83,21 @@ class _DetailPageState extends State<DetailPage> {
                         bottomLeft: Radius.circular(20.0),
                         bottomRight: Radius.circular(20.0),
                       ),
-                      child: Image.network(widget.wisata.urlImage),
+                      child: CachedNetworkImage(
+                        imageUrl: widget.wisata.urlImage,
+                        placeholder: (context, url) => const SizedBox(
+                          child: DecoratedBox(
+                            decoration: BoxDecoration(
+                              color: Colors.grey,
+                            ),
+                          ),
+                        ),
+                        errorWidget: (context, url, error) =>
+                            const Icon(Icons.dangerous_rounded),
+                        fit: BoxFit.fill,
+                        width: MediaQuery.of(context).size.width * 1,
+                        height: 300,
+                      ),
                     ),
                   ),
                   Padding(

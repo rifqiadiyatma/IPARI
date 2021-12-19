@@ -220,6 +220,7 @@ class MainPage extends StatelessWidget {
                   wisata.name.toUpperCase(),
                   overflow: TextOverflow.ellipsis,
                   maxLines: 1,
+                  style: const TextStyle(fontWeight: FontWeight.w500),
                 ),
               ),
               Padding(
@@ -229,6 +230,7 @@ class MainPage extends StatelessWidget {
                   wisata.province,
                   overflow: TextOverflow.ellipsis,
                   maxLines: 1,
+                  style: const TextStyle(color: primaryColor),
                 ),
               ),
             ],
