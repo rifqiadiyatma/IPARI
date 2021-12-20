@@ -16,12 +16,10 @@ class ReviewPage extends StatefulWidget {
 }
 
 class _ReviewPageState extends State<ReviewPage> {
-  // User? user;
   late DatabaseReference? refUser;
 
   @override
   void initState() {
-    // user = FirebaseAuth.instance.currentUser;
     refUser = FirebaseDatabase.instance.ref().child('reviews');
     super.initState();
   }
@@ -39,7 +37,7 @@ class _ReviewPageState extends State<ReviewPage> {
             onPressed: () {
               Navigator.pushNamed(context, AddReviewPage.routeName);
             },
-            icon: const Icon(Icons.add),
+            icon: const Icon(Icons.insert_comment_rounded),
           ),
         ],
       ),
@@ -49,7 +47,6 @@ class _ReviewPageState extends State<ReviewPage> {
         builder: (context, snapshot) {
           if (snapshot.hasData && !snapshot.hasError) {
             var event = snapshot.data as DatabaseEvent;
-
             var snap = event.snapshot.value as dynamic;
             if (snap == null) {
               return const Center(
@@ -66,6 +63,7 @@ class _ReviewPageState extends State<ReviewPage> {
                   ModelReview.fromMap(Map<String, dynamic>.from(reviewMap));
 
               reviews.add(reviewModel);
+              reviews.sort((a, b) => b.time.compareTo(a.time));
             }
 
             return Padding(
@@ -201,7 +199,7 @@ class _ReviewPageState extends State<ReviewPage> {
                                   style: Theme.of(context).textTheme.overline,
                                   textAlign: TextAlign.right,
                                   maxLines: 1,
-                                  overflow: TextOverflow.fade,
+                                  overflow: TextOverflow.ellipsis,
                                 ),
                               ),
                             ],

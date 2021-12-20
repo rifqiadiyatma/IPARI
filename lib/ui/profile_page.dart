@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
@@ -9,8 +8,8 @@ import 'package:ipari/data/db/datetime_helper.dart';
 import 'package:ipari/data/model/model_user.dart';
 import 'package:ipari/ui/about_page.dart';
 import 'package:ipari/ui/login_page.dart';
+import 'package:ipari/widget/post_button.dart';
 import 'package:ipari/widget/show_toast.dart';
-import 'package:ndialog/ndialog.dart';
 
 class ProfilePage extends StatefulWidget {
   static const routeName = '/profile_page';
@@ -75,31 +74,132 @@ class _ProfilePageState extends State<ProfilePage> {
               child: Center(
                 child: Column(
                   children: [
-                    CircleAvatar(
-                      radius: 80,
-                      backgroundImage: modelUser!.avatar == ''
-                          ? const NetworkImage(
-                              'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80')
-                          : NetworkImage(modelUser!.avatar),
+                    Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: CircleAvatar(
+                        radius: 80,
+                        backgroundImage: modelUser!.avatar == ''
+                            ? const NetworkImage(
+                                'https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80')
+                            : NetworkImage(modelUser!.avatar),
+                      ),
                     ),
-                    Text('Username : ' + modelUser!.username),
-                    Text('Email : ' + modelUser!.email),
-                    Text('Created Account From : ' +
-                        dateConverter(modelUser!.time)),
-                    const SizedBox(
-                      height: 30,
+                    Text(
+                      modelUser!.username,
+                      style: const TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.w500,
+                          letterSpacing: 1.5),
                     ),
-                    ElevatedButton(
-                      onPressed: () {
-                        Navigator.pushNamed(context, AboutPage.routeName);
-                      },
-                      child: const Text('About'),
+                    Text(
+                      modelUser!.email,
+                      style: const TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w100,
+                          letterSpacing: 2.0),
                     ),
                     const SizedBox(
                       height: 10,
                     ),
-                    ElevatedButton(
-                      onPressed: () {
+                    Card(
+                      color: Colors.lightBlue,
+                      margin: const EdgeInsets.all(4.0),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20.0),
+                      ),
+                      elevation: 3.0,
+                      child: Padding(
+                        padding:
+                            const EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
+                        child: Text(
+                          'Member since - ' + dateConverter(modelUser!.time),
+                          style: const TextStyle(
+                              color: secondaryColor,
+                              fontSize: 11,
+                              letterSpacing: 1.5),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    InkWell(
+                      onTap: () {},
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20.0),
+                          color: primaryColor,
+                        ),
+                        margin: const EdgeInsets.symmetric(horizontal: 10.0),
+                        padding: const EdgeInsets.all(16.0),
+                        width: MediaQuery.of(context).size.width * 1,
+                        child: Row(
+                          children: const [
+                            Padding(
+                              padding: EdgeInsets.only(left: 4.0, right: 8.0),
+                              child: Icon(
+                                Icons.lock_rounded,
+                                color: secondaryColor,
+                              ),
+                            ),
+                            Text(
+                              'Change Password',
+                              style: TextStyle(
+                                color: secondaryColor,
+                              ),
+                            ),
+                            Spacer(),
+                            Icon(
+                              Icons.keyboard_arrow_right_rounded,
+                              color: secondaryColor,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    InkWell(
+                      onTap: () =>
+                          Navigator.of(context).pushNamed(AboutPage.routeName),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20.0),
+                          color: primaryColor,
+                        ),
+                        margin: const EdgeInsets.symmetric(horizontal: 10.0),
+                        padding: const EdgeInsets.all(16.0),
+                        width: MediaQuery.of(context).size.width * 1,
+                        child: Row(
+                          children: const [
+                            Padding(
+                              padding: EdgeInsets.only(left: 4.0, right: 8.0),
+                              child: Icon(
+                                Icons.info_rounded,
+                                color: secondaryColor,
+                              ),
+                            ),
+                            Text(
+                              'About',
+                              style: TextStyle(
+                                color: secondaryColor,
+                              ),
+                            ),
+                            Spacer(),
+                            Icon(
+                              Icons.keyboard_arrow_right_rounded,
+                              color: secondaryColor,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    InkWell(
+                      onTap: () {
                         FirebaseAuth.instance.signOut();
 
                         Navigator.of(context).pushReplacement(
@@ -110,9 +210,42 @@ class _ProfilePageState extends State<ProfilePage> {
                           ),
                         );
 
-                        showToastMsg('Pengguna Berhasil Logout', Colors.green);
+                        showToastMsg('Logout Success', Colors.green);
                       },
-                      child: const Text('Logout'),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20.0),
+                          color: primaryColor,
+                        ),
+                        margin: const EdgeInsets.symmetric(horizontal: 10.0),
+                        padding: const EdgeInsets.all(16.0),
+                        width: MediaQuery.of(context).size.width * 1,
+                        child: Row(
+                          children: const [
+                            Padding(
+                              padding: EdgeInsets.only(left: 4.0, right: 8.0),
+                              child: Icon(
+                                Icons.logout_rounded,
+                                color: secondaryColor,
+                              ),
+                            ),
+                            Text(
+                              'Logout',
+                              style: TextStyle(
+                                color: secondaryColor,
+                              ),
+                            ),
+                            Spacer(),
+                            Icon(
+                              Icons.keyboard_arrow_right_rounded,
+                              color: secondaryColor,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 100,
                     ),
                   ],
                 ),

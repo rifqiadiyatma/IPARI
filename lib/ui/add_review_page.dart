@@ -255,7 +255,7 @@ class _AddReviewPageState extends State<AddReviewPage> {
 
                               String? reviewId = reviewRef.push().key;
 
-                              await reviewRef.child(reviewId!).set({
+                              await reviewRef.child(time.toString()).set({
                                 'name': name,
                                 'location': location,
                                 'description': description,
