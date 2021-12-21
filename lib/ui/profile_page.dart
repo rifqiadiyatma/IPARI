@@ -7,8 +7,8 @@ import 'package:ipari/common/styles.dart';
 import 'package:ipari/data/db/datetime_helper.dart';
 import 'package:ipari/data/model/model_user.dart';
 import 'package:ipari/ui/about_page.dart';
+import 'package:ipari/ui/change_password_page.dart';
 import 'package:ipari/ui/login_page.dart';
-import 'package:ipari/widget/post_button.dart';
 import 'package:ipari/widget/show_toast.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -124,7 +124,10 @@ class _ProfilePageState extends State<ProfilePage> {
                       height: 20,
                     ),
                     InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.of(context)
+                            .pushNamed(ChangePasswordPage.routeName);
+                      },
                       child: Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20.0),

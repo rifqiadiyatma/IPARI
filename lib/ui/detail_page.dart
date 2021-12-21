@@ -9,7 +9,7 @@ import 'package:maps_launcher/maps_launcher.dart';
 
 class DetailPage extends StatefulWidget {
   const DetailPage({Key? key, required this.wisata}) : super(key: key);
-  static const routeName = 'detail_wisata';
+  static const routeName = '/detail_wisata';
 
   final Wisata wisata;
 

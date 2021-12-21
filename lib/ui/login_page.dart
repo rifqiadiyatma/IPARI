@@ -1,6 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:ipari/common/styles.dart';
 import 'package:ipari/ui/home_page.dart';
 import 'package:ipari/ui/register_page.dart';
 import 'package:ipari/widget/post_button.dart';
@@ -18,7 +17,6 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   TextEditingController emailController = TextEditingController();
-
   TextEditingController passwordController = TextEditingController();
 
   @override

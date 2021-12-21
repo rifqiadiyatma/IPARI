@@ -4,7 +4,6 @@ import 'package:ipari/common/styles.dart';
 import 'package:ipari/ui/profile_page.dart';
 import 'package:ipari/ui/favorite_page.dart';
 import 'package:ipari/ui/main_page.dart';
-import 'package:ipari/ui/about_page.dart';
 import 'package:ipari/ui/review_page.dart';
 
 class HomePage extends StatefulWidget {

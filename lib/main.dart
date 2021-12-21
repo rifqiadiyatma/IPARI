@@ -6,6 +6,7 @@ import 'package:ipari/data/model/model_review.dart';
 import 'package:ipari/data/model/wisata.dart';
 import 'package:ipari/provider/database_provider.dart';
 import 'package:ipari/provider/wisata_provider.dart';
+import 'package:ipari/ui/change_password_page.dart';
 import 'package:ipari/ui/profile_page.dart';
 import 'package:ipari/ui/add_review_page.dart';
 import 'package:ipari/ui/detail_page.dart';
@@ -50,6 +51,7 @@ class MyApp extends StatelessWidget {
           FavoritePage.routeName: (context) => const FavoritePage(),
           ProfilePage.routeName: (context) => const ProfilePage(),
           AboutPage.routeName: (context) => const AboutPage(),
+          ChangePasswordPage.routeName: (context) => const ChangePasswordPage(),
           DetailReview.routeName: (context) => DetailReview(
                 review:
                     ModalRoute.of(context)?.settings.arguments as ModelReview,
