@@ -1,3 +1,8 @@
+/*
+  Credit this Screen
+  API => https://ipariwisata.000webhostapp.com/  
+*/
+
 class WisataResponse {
   WisataResponse({
     required this.error,

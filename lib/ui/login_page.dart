@@ -7,6 +7,13 @@ import 'package:ipari/widget/show_toast.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:ndialog/ndialog.dart';
 
+/*
+  Credit this Screen
+  ndialog => https://pub.dev/packages/ndialog
+  Firebase Auth => https://pub.dev/packages/firebase_auth
+  Email Validator => https://pub.dev/packages/email_validator
+*/
+
 class LoginPage extends StatefulWidget {
   static const routeName = '/login_page';
   const LoginPage({Key? key}) : super(key: key);

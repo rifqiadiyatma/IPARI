@@ -6,6 +6,14 @@ import 'package:ipari/widget/post_button.dart';
 import 'package:ipari/widget/show_toast.dart';
 import 'package:ndialog/ndialog.dart';
 
+/*
+  Credit this Screen
+  ndialog => https://pub.dev/packages/ndialog
+  Email Validator => https://pub.dev/packages/email_validator
+  Firebase Auth => https://pub.dev/packages/firebase_auth
+  Firebase Database => https://pub.dev/packages/firebase_database
+*/
+
 class RegisterPage extends StatefulWidget {
   static const routeName = '/register_page';
   const RegisterPage({Key? key}) : super(key: key);

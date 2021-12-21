@@ -7,6 +7,12 @@ import 'package:ipari/ui/detail_page.dart';
 import 'package:ipari/utils/result_state.dart';
 import 'package:provider/provider.dart';
 
+/*
+  Credit this Screen
+  Provider => https://pub.dev/packages/provider
+  Cached Network Image => https://pub.dev/packages/cached_network_image
+*/
+
 class FavoritePage extends StatelessWidget {
   const FavoritePage({Key? key}) : super(key: key);
   static const routeName = '/favorite_page';

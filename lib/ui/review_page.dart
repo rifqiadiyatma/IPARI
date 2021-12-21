@@ -7,6 +7,12 @@ import 'package:ipari/data/model/model_review.dart';
 import 'package:ipari/ui/add_review_page.dart';
 import 'package:ipari/ui/detail_review.dart';
 
+/*
+  Credit this Screen
+  Cached Network Image => https://pub.dev/packages/cached_network_image
+  Firebase Database => https://pub.dev/packages/firebase_database
+*/
+
 class ReviewPage extends StatefulWidget {
   static const routeName = '/review_page';
   const ReviewPage({Key? key}) : super(key: key);
@@ -28,7 +34,7 @@ class _ReviewPageState extends State<ReviewPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Review Page'),
+        title: const Text('Explore'),
         elevation: 0,
         backgroundColor: primaryColor,
         centerTitle: true,
@@ -37,7 +43,7 @@ class _ReviewPageState extends State<ReviewPage> {
             onPressed: () {
               Navigator.pushNamed(context, AddReviewPage.routeName);
             },
-            icon: const Icon(Icons.insert_comment_rounded),
+            icon: const Icon(Icons.add_comment_rounded),
           ),
         ],
       ),
@@ -186,7 +192,9 @@ class _ReviewPageState extends State<ReviewPage> {
                               const SizedBox(
                                 height: 8.0,
                               ),
-                              const Divider(),
+                              const Divider(
+                                thickness: 0.8,
+                              ),
                               Padding(
                                 padding: const EdgeInsets.only(
                                   right: 8.0,

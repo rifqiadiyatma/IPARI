@@ -3,6 +3,11 @@ import 'package:ipari/data/model/wisata.dart';
 import 'package:ipari/provider/database_provider.dart';
 import 'package:provider/provider.dart';
 
+/*
+  Credit this Screen
+  Provider => https://pub.dev/packages/provider
+*/
+
 class FavoriteButton extends StatelessWidget {
   const FavoriteButton({Key? key, required this.wisata}) : super(key: key);
 

@@ -5,6 +5,12 @@ import 'package:ipari/widget/post_button.dart';
 import 'package:ipari/widget/show_toast.dart';
 import 'package:ndialog/ndialog.dart';
 
+/*
+  Credit this Screen
+  Firebase Auth => https://pub.dev/packages/firebase_auth
+  ndialog => https://pub.dev/packages/ndialog
+*/
+
 class ChangePasswordPage extends StatefulWidget {
   const ChangePasswordPage({Key? key}) : super(key: key);
   static const routeName = '/change_password';

@@ -2,6 +2,12 @@ import 'dart:convert';
 import 'package:ipari/data/model/wisata.dart';
 import 'package:http/http.dart' as http;
 
+/*
+  Credit this Screen
+  API => https://ipariwisata.000webhostapp.com/
+  HTTP => https://pub.dev/packages/http
+*/
+
 class ApiService {
   static const String _baseUrl =
       'https://ipariwisata.000webhostapp.com/wisata/';

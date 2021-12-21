@@ -7,6 +7,14 @@ import 'package:ipari/widget/favorite_button.dart';
 import 'dart:async';
 import 'package:maps_launcher/maps_launcher.dart';
 
+/*
+  Credit this Screen
+  Maps Launcher => https://pub.dev/packages/maps_launcher
+  Cached Network Image => https://pub.dev/packages/cached_network_image
+  Image Resources => https://unsplash.com/
+  API => https://ipariwisata.000webhostapp.com/
+*/
+
 class DetailPage extends StatefulWidget {
   const DetailPage({Key? key, required this.wisata}) : super(key: key);
   static const routeName = '/detail_wisata';

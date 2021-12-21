@@ -1,6 +1,11 @@
 import 'package:ipari/data/model/wisata.dart';
 import 'package:sqflite/sqflite.dart';
 
+/*
+  Credit this Screen
+  SQflite => https://pub.dev/packages/sqflite
+*/
+
 class DatabaseHelper {
   static DatabaseHelper? _instance;
   static Database? _database;

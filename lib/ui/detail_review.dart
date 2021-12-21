@@ -3,6 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:ipari/common/styles.dart';
 import 'package:ipari/data/db/datetime_helper.dart';
 import 'package:ipari/data/model/model_review.dart';
+import 'package:maps_launcher/maps_launcher.dart';
+
+/*
+  Credit this Screen
+  Maps Launcher => https://pub.dev/packages/maps_launcher
+  Cached Network Image => https://pub.dev/packages/cached_network_image
+*/
 
 class DetailReview extends StatelessWidget {
   static const routeName = '/detail_review_page';
@@ -12,6 +19,12 @@ class DetailReview extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () =>
+            MapsLauncher.launchQuery(review.name + ' ' + review.location),
+        child: const Icon(Icons.map),
+        backgroundColor: primaryColor,
+      ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -108,6 +121,7 @@ class DetailReview extends StatelessWidget {
                   ],
                 ),
               ),
+              const SizedBox(height: 10),
               const Divider(
                 thickness: 1.0,
                 color: primaryColor,

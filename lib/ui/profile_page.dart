@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:ipari/common/styles.dart';
@@ -10,6 +11,16 @@ import 'package:ipari/ui/about_page.dart';
 import 'package:ipari/ui/change_password_page.dart';
 import 'package:ipari/ui/login_page.dart';
 import 'package:ipari/widget/show_toast.dart';
+import 'package:ndialog/ndialog.dart';
+
+/*
+  Credit this Screen
+  Firebase Auth => https://pub.dev/packages/firebase_auth
+  Firebase Database => https://pub.dev/packages/firebase_database
+  Firebase Storage => https://pub.dev/packages/firebase_storage
+  Image Picker => https://pub.dev/packages/image_picker
+  ndialog => https://pub.dev/packages/ndialog
+*/
 
 class ProfilePage extends StatefulWidget {
   static const routeName = '/profile_page';
@@ -23,7 +34,6 @@ class _ProfilePageState extends State<ProfilePage> {
   User? user;
   late DatabaseReference refUser;
   ModelUser? modelUser;
-
   File? imageFile;
 
   Future getImageGallery() async {
@@ -31,6 +41,60 @@ class _ProfilePageState extends State<ProfilePage> {
     setState(() {
       if (xFile != null) {
         imageFile = File(xFile.path);
+        AlertDialog alertDialog = AlertDialog(
+          title: const Text('Confirmation Dialog'),
+          content: const Text('Are you sure to change avatar image?'),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: const Text('Cancel'),
+            ),
+            TextButton(
+              onPressed: () async {
+                Navigator.pop(context);
+                ProgressDialog progressDialog = ProgressDialog(
+                  context,
+                  title: const Text('Image Updating'),
+                  message: const Text('Loading'),
+                );
+
+                progressDialog.show();
+                try {
+                  var fileName = 'avatar' +
+                      modelUser!.uid.toString() +
+                      DateTime.now().toString() +
+                      '.jpg';
+
+                  UploadTask uploadTask = FirebaseStorage.instance
+                      .ref()
+                      .child('images')
+                      .child(fileName)
+                      .putFile(imageFile!);
+
+                  TaskSnapshot snapshot = await uploadTask;
+
+                  String imgUrl = await snapshot.ref.getDownloadURL();
+
+                  DatabaseReference dbrefUser = FirebaseDatabase.instance
+                      .ref()
+                      .child('users')
+                      .child(user!.uid);
+
+                  await dbrefUser.update({
+                    'avatar': imgUrl,
+                  });
+                  showToastMsg('Success Update Profile Picture', Colors.green);
+                  progressDialog.dismiss();
+                } catch (e) {
+                  progressDialog.dismiss();
+                  showToastMsg('Failed to Update Profile Picture', Colors.red);
+                }
+              },
+              child: const Text('OK'),
+            ),
+          ],
+        );
+        alertDialog.show(context);
       } else {
         showToastMsg('No Image Selected', Colors.red);
         return;
@@ -74,14 +138,35 @@ class _ProfilePageState extends State<ProfilePage> {
               child: Center(
                 child: Column(
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: CircleAvatar(
-                        radius: 80,
-                        backgroundImage: modelUser!.avatar == ''
-                            ? const NetworkImage(
-                                'https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80')
-                            : NetworkImage(modelUser!.avatar),
+                    InkWell(
+                      onTap: () {
+                        getImageGallery();
+                      },
+                      child: Stack(
+                        clipBehavior: Clip.none,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(16.0),
+                            child: CircleAvatar(
+                              radius: 80,
+                              backgroundImage: modelUser!.avatar == ''
+                                  ? const NetworkImage(
+                                      'https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80')
+                                  : NetworkImage(modelUser!.avatar),
+                            ),
+                          ),
+                          Positioned(
+                            bottom: 15,
+                            right: 40,
+                            child: Transform.scale(
+                              scale: 1.5,
+                              child: const Icon(
+                                Icons.add_circle,
+                                color: Colors.blue,
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                     Text(

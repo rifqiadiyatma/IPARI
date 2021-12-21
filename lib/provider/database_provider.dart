@@ -4,6 +4,11 @@ import 'package:ipari/data/db/database_helper.dart';
 import 'package:ipari/data/model/wisata.dart';
 import 'package:ipari/utils/result_state.dart';
 
+/*
+  Credit this Screen
+  Flutter Toast => https://pub.dev/packages/fluttertoast
+*/
+
 class DatabaseProvider extends ChangeNotifier {
   final DatabaseHelper databaseHelper;
 

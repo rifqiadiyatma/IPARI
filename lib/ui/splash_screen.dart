@@ -5,6 +5,11 @@ import 'package:ipari/common/styles.dart';
 import 'package:ipari/ui/home_page.dart';
 import 'package:ipari/ui/login_page.dart';
 
+/*
+  Credit this Screen
+  Firebase Auth => https://pub.dev/packages/firebase_auth
+*/
+
 class SplashScreen extends StatefulWidget {
   static const routeName = '/splash_screen';
 

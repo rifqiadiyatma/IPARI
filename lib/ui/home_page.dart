@@ -6,6 +6,11 @@ import 'package:ipari/ui/favorite_page.dart';
 import 'package:ipari/ui/main_page.dart';
 import 'package:ipari/ui/review_page.dart';
 
+/*
+  Credit this Screen
+  Dot Nav Bar => https://pub.dev/packages/dot_navigation_bar
+*/
+
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 

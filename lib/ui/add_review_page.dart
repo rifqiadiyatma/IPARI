@@ -10,6 +10,16 @@ import 'package:ipari/widget/post_button.dart';
 import 'package:ipari/widget/show_toast.dart';
 import 'package:ndialog/ndialog.dart';
 
+/*
+  Credit this Screen
+  Flutter Rating Bar => https://pub.dev/packages/flutter_rating_bar
+  Firebase Storage => https://pub.dev/packages/firebase_storage
+  Firebase Auth => https://pub.dev/packages/firebase_auth
+  Firebase Database => https://pub.dev/packages/firebase_database
+  ndialog => https://pub.dev/packages/ndialog
+  Image Picker => https://pub.dev/packages/image_picker
+*/
+
 class AddReviewPage extends StatefulWidget {
   static const routeName = '/add_review_page';
   const AddReviewPage({Key? key}) : super(key: key);

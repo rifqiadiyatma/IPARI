@@ -20,6 +20,12 @@ import 'package:ipari/ui/review_page.dart';
 import 'package:ipari/ui/splash_screen.dart';
 import 'package:provider/provider.dart';
 
+/*
+  Credits this screen
+  Provider => https://pub.dev/packages/provider
+  Firebase Core => https://pub.dev/packages/firebase_core
+*/
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
