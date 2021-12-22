@@ -38,3 +38,8 @@ Detail Wisata | Favorite | Review | Detail Review
 Tambah Review | Profil | Ganti Password | About 
 :----------:|:----------:|:-------------:|:----------:
 <img src="assets/Logo Background Putih.png" width=200/> | <img src="assets/Logo Background Putih.png" width=200/> | <img src="assets/Logo Background Putih.png" width=200/> | <img src="assets/Logo Background Putih.png" width=200/>
+
+### 🧑‍🤝‍🧑 Dibuat oleh
+#### Tim CSD-175
+- [Rifqi Adiyatma](https://github.com/rifqiadiyatma)
+- [Muhammad Hilal](https://github.com/iamuhilal)
