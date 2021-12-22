@@ -6,8 +6,8 @@
    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
    <application
-        android:label="ipari"
-        android:icon="@mipmap/ic_launcher">
+        android:label="Ipari"
+        android:icon="@mipmap/ic_ipari">
         <meta-data android:name="com.google.android.geo.API_KEY" 
             android:value="AIzaSyCNLy_FCLy9N9qTtS3XYxzlIn_LGnq3rFY"/>
         <activity
