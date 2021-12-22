@@ -2,6 +2,7 @@ import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:ipari/ui/login_page.dart';
 import 'package:ipari/widget/post_button.dart';
 import 'package:ipari/widget/show_toast.dart';
 import 'package:ndialog/ndialog.dart';
@@ -31,15 +32,15 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Register Page'),
-        elevation: 0,
-        centerTitle: true,
-      ),
-      backgroundColor: Colors.blue.shade50,
+      // appBar: AppBar(
+      //   title: const Text('Register Page'),
+      //   elevation: 0,
+      //   centerTitle: true,
+      // ),
+      backgroundColor: Colors.blue,
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10),
+          padding: const EdgeInsets.symmetric(horizontal: 24),
           child: Column(
             children: [
               Image.asset(
@@ -54,99 +55,114 @@ class _RegisterPageState extends State<RegisterPage> {
                     children: [
                       TextFormField(
                         controller: usernameController,
-                        decoration: const InputDecoration(
-                          hintText: 'Masukkan Username',
-                          hintStyle: TextStyle(color: Colors.blue),
-                          prefixIcon: Icon(
+                        style: const TextStyle(
+                            fontSize: 14.0, height: 1.0, color: Colors.white),
+                        decoration: InputDecoration(
+                          hintText: 'Username',
+                          hintStyle: const TextStyle(color: Colors.white),
+                          prefixIcon: const Icon(
                             Icons.person,
-                            color: Colors.blue,
+                            color: Colors.white,
                           ),
-                          border: OutlineInputBorder(),
                           enabledBorder: OutlineInputBorder(
-                            borderSide:
-                                BorderSide(color: Colors.blue, width: 1.0),
+                            borderRadius: BorderRadius.circular(30),
+                            borderSide: const BorderSide(
+                                color: Colors.white, width: 1.0),
                           ),
-                          labelStyle: TextStyle(color: Colors.blue),
-                          labelText: 'Username',
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(30),
+                            borderSide: const BorderSide(
+                                color: Colors.white, width: 2.0),
+                          ),
                         ),
                       ),
                       const SizedBox(
-                        height: 20,
+                        height: 12,
                       ),
                       TextFormField(
                         controller: emailController,
+                        style: const TextStyle(
+                            fontSize: 14.0, height: 1.0, color: Colors.white),
                         keyboardType: TextInputType.emailAddress,
-                        decoration: const InputDecoration(
-                          hintText: 'Masukkan Email',
-                          hintStyle: TextStyle(color: Colors.blue),
-                          prefixIcon: Icon(
+                        decoration: InputDecoration(
+                          hintText: 'Email',
+                          hintStyle: const TextStyle(color: Colors.white),
+                          prefixIcon: const Icon(
                             Icons.email,
-                            color: Colors.blue,
+                            color: Colors.white,
                           ),
-                          labelText: 'Email',
-                          labelStyle: TextStyle(color: Colors.blue),
-                          border: OutlineInputBorder(),
                           enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Colors.blue,
-                              width: 1.0,
-                            ),
+                            borderRadius: BorderRadius.circular(30),
+                            borderSide: const BorderSide(
+                                color: Colors.white, width: 1.0),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(30),
+                            borderSide: const BorderSide(
+                                color: Colors.white, width: 2.0),
                           ),
                         ),
                       ),
                       const SizedBox(
-                        height: 20,
+                        height: 12,
                       ),
                       TextFormField(
                         controller: passwordController,
+                        style: const TextStyle(
+                            fontSize: 14.0, height: 1.0, color: Colors.white),
                         obscureText: true,
-                        decoration: const InputDecoration(
-                          hintText: 'Masukkan Password',
-                          hintStyle: TextStyle(color: Colors.blue),
-                          prefixIcon: Icon(
+                        decoration: InputDecoration(
+                          hintText: 'Password',
+                          hintStyle: const TextStyle(color: Colors.white),
+                          prefixIcon: const Icon(
                             Icons.lock,
-                            color: Colors.blue,
+                            color: Colors.white,
                           ),
-                          labelText: 'Password',
-                          labelStyle: TextStyle(color: Colors.blue),
-                          border: OutlineInputBorder(),
                           enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Colors.blue,
-                              width: 1.0,
-                            ),
+                            borderRadius: BorderRadius.circular(30),
+                            borderSide: const BorderSide(
+                                color: Colors.white, width: 1.0),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(30),
+                            borderSide: const BorderSide(
+                                color: Colors.white, width: 2.0),
                           ),
                         ),
                       ),
                       const SizedBox(
-                        height: 20,
+                        height: 12,
                       ),
                       TextFormField(
                         controller: repasswordController,
+                        style: const TextStyle(
+                            fontSize: 14.0, height: 1.0, color: Colors.white),
                         obscureText: true,
-                        decoration: const InputDecoration(
-                          hintText: 'Masukkan Re Password',
-                          hintStyle: TextStyle(color: Colors.blue),
-                          prefixIcon: Icon(
+                        decoration: InputDecoration(
+                          hintText: 'Retype Password',
+                          hintStyle: const TextStyle(color: Colors.white),
+                          prefixIcon: const Icon(
                             Icons.lock,
-                            color: Colors.blue,
+                            color: Colors.white,
                           ),
-                          labelText: 'Re Password',
-                          labelStyle: TextStyle(color: Colors.blue),
-                          border: OutlineInputBorder(),
                           enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Colors.blue,
-                              width: 1.0,
-                            ),
+                            borderRadius: BorderRadius.circular(30),
+                            borderSide: const BorderSide(
+                                color: Colors.white, width: 1.0),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(30),
+                            borderSide: const BorderSide(
+                                color: Colors.white, width: 2.0),
                           ),
                         ),
                       ),
                       const SizedBox(
-                        height: 20,
+                        height: 12,
                       ),
                       PostButton(
-                        name: 'Register',
+                        name: 'REGISTER',
+                        textColor: Colors.blue,
                         onPressed: () async {
                           String username = usernameController.text.trim();
                           String email = emailController.text.trim();
@@ -233,7 +249,19 @@ class _RegisterPageState extends State<RegisterPage> {
                                 'Something wrong, try again', Colors.red);
                           }
                         },
-                        color: Colors.blue,
+                        color: Colors.white,
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          Navigator.pushNamed(context, LoginPage.routeName);
+                        },
+                        child: const Text(
+                          'Punya akun? Login',
+                          style: TextStyle(
+                            color: Colors.white,
+                            decoration: TextDecoration.underline,
+                          ),
+                        ),
                       ),
                     ],
                   ),

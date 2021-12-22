@@ -20,18 +20,46 @@ class FavoritePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: SizedBox(
-          height: 75,
-          width: 150,
-          child: Image.asset('assets/Logo Font.png'),
-        ),
-        elevation: 0,
-        backgroundColor: primaryColor,
-        centerTitle: true,
-      ),
       backgroundColor: bgColor,
-      body: _buildList(),
+      // body: _buildList(),
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            const SizedBox(
+              height: 42,
+            ),
+            _favHead(),
+            const SizedBox(
+              height: 24,
+            ),
+            _buildList()
+            // _buildList(),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _favHead() {
+    return Column(
+      children: [
+        Image.asset(
+          'assets/Ilove.png',
+          height: 140,
+        ),
+        const SizedBox(
+          height: 12,
+        ),
+        const Text(
+          "Your Favorite List",
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 24,
+          ),
+        ),
+      ],
     );
   }
 

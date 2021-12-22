@@ -36,33 +36,52 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Change Password'),
+        title: const Text(
+          'Change Password',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 21,
+          ),
+        ),
         elevation: 0,
-        backgroundColor: primaryColor,
-        centerTitle: true,
+        foregroundColor: primaryColor,
+        backgroundColor: Colors.transparent,
       ),
       backgroundColor: bgColor,
       body: SingleChildScrollView(
         child: Form(
           child: Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: const EdgeInsets.symmetric(horizontal: 24.0),
             child: Column(
               children: [
+                Image.asset(
+                  'assets/Ilock.png',
+                  height: 170,
+                ),
+                const SizedBox(
+                  height: 12,
+                ),
                 TextFormField(
                   controller: oldPasswordController,
                   obscureText: true,
-                  decoration: const InputDecoration(
-                    hintText: 'Masukkan Password Lama',
-                    hintStyle: TextStyle(color: Colors.blue),
-                    prefixIcon: Icon(
+                  style: const TextStyle(
+                      fontSize: 14.0, height: 1.0, color: Colors.blue),
+                  decoration: InputDecoration(
+                    hintText: 'Old Password',
+                    hintStyle: const TextStyle(color: Colors.blue),
+                    prefixIcon: const Icon(
                       Icons.lock_clock,
                       color: Colors.blue,
                     ),
-                    labelText: 'Old Password',
-                    labelStyle: TextStyle(color: Colors.blue),
-                    border: OutlineInputBorder(),
                     enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.blue, width: 1.0),
+                      borderRadius: BorderRadius.circular(30),
+                      borderSide:
+                          const BorderSide(color: Colors.blue, width: 1.0),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(30),
+                      borderSide:
+                          const BorderSide(color: Colors.blue, width: 2.0),
                     ),
                   ),
                 ),
@@ -72,18 +91,24 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                 TextFormField(
                   controller: newPasswordController,
                   obscureText: true,
-                  decoration: const InputDecoration(
-                    hintText: 'Masukkan Password Baru',
-                    hintStyle: TextStyle(color: Colors.blue),
-                    prefixIcon: Icon(
+                  style: const TextStyle(
+                      fontSize: 14.0, height: 1.0, color: Colors.blue),
+                  decoration: InputDecoration(
+                    hintText: 'New Password',
+                    hintStyle: const TextStyle(color: Colors.blue),
+                    prefixIcon: const Icon(
                       Icons.lock,
                       color: Colors.blue,
                     ),
-                    labelText: 'New Password',
-                    labelStyle: TextStyle(color: Colors.blue),
-                    border: OutlineInputBorder(),
                     enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.blue, width: 1.0),
+                      borderRadius: BorderRadius.circular(30),
+                      borderSide:
+                          const BorderSide(color: Colors.blue, width: 1.0),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(30),
+                      borderSide:
+                          const BorderSide(color: Colors.blue, width: 2.0),
                     ),
                   ),
                 ),
@@ -93,18 +118,24 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                 TextFormField(
                   controller: confirmPasswordController,
                   obscureText: true,
-                  decoration: const InputDecoration(
-                    hintText: 'Masukkan Ulang Password Baru',
-                    hintStyle: TextStyle(color: Colors.blue),
-                    prefixIcon: Icon(
+                  style: const TextStyle(
+                      fontSize: 14.0, height: 1.0, color: Colors.blue),
+                  decoration: InputDecoration(
+                    hintText: 'New Password',
+                    hintStyle: const TextStyle(color: Colors.blue),
+                    prefixIcon: const Icon(
                       Icons.lock,
                       color: Colors.blue,
                     ),
-                    labelText: 'Confirm Password',
-                    labelStyle: TextStyle(color: Colors.blue),
-                    border: OutlineInputBorder(),
                     enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.blue, width: 1.0),
+                      borderRadius: BorderRadius.circular(30),
+                      borderSide:
+                          const BorderSide(color: Colors.blue, width: 1.0),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(30),
+                      borderSide:
+                          const BorderSide(color: Colors.blue, width: 2.0),
                     ),
                   ),
                 ),
@@ -113,6 +144,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                 ),
                 PostButton(
                     name: 'Update Password',
+                    textColor: Colors.white,
                     onPressed: () async {
                       String oldPassword = oldPasswordController.text.trim();
                       String newPassword = newPasswordController.text.trim();

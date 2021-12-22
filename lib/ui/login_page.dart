@@ -29,73 +29,89 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Login Page'),
-        elevation: 0,
-        centerTitle: true,
-      ),
-      backgroundColor: Colors.blue.shade50,
+      // appBar: AppBar(
+      //   title: const Text('Login Page'),
+      //   elevation: 0,
+      //   centerTitle: true,
+      // ),
+      // backgroundColor: Colors.blue.shade50,
+      backgroundColor: Colors.blue,
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10),
+          padding: const EdgeInsets.only(top: 60),
           child: Column(
             children: [
               Image.asset(
                 'assets/Logo Background Putih.png',
-                width: 300,
-                height: 250,
+                width: 250,
+                height: 200,
               ),
               Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.symmetric(horizontal: 24.0),
                 child: Form(
                   child: Column(
                     children: [
                       TextFormField(
                         controller: emailController,
                         keyboardType: TextInputType.emailAddress,
-                        decoration: const InputDecoration(
-                          hintText: 'Masukkan Email',
-                          hintStyle: TextStyle(color: Colors.blue),
-                          prefixIcon: Icon(
+                        style: const TextStyle(
+                            fontSize: 14.0, height: 1.0, color: Colors.white),
+                        decoration: InputDecoration(
+                          contentPadding:
+                              const EdgeInsets.symmetric(vertical: 10.0),
+                          hintText: 'Email',
+                          hintStyle: const TextStyle(color: Colors.white),
+                          prefixIcon: const Icon(
                             Icons.email,
-                            color: Colors.blue,
+                            color: Colors.white,
                           ),
-                          border: OutlineInputBorder(),
                           enabledBorder: OutlineInputBorder(
-                            borderSide:
-                                BorderSide(color: Colors.blue, width: 1.0),
+                            borderRadius: BorderRadius.circular(30),
+                            borderSide: const BorderSide(
+                                color: Colors.white, width: 1.0),
                           ),
-                          labelStyle: TextStyle(color: Colors.blue),
-                          labelText: 'Email',
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(30),
+                            borderSide: const BorderSide(
+                                color: Colors.white, width: 2.0),
+                          ),
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 20),
+                        padding: const EdgeInsets.only(top: 12, bottom: 48),
                         child: TextFormField(
+                          style: const TextStyle(
+                              fontSize: 14.0, height: 1.0, color: Colors.white),
                           controller: passwordController,
                           obscureText: true,
-                          decoration: const InputDecoration(
-                            hintText: 'Masukkan Password',
-                            hintStyle: TextStyle(color: Colors.blue),
-                            prefixIcon: Icon(
+                          decoration: InputDecoration(
+                            contentPadding:
+                                const EdgeInsets.symmetric(vertical: 10.0),
+                            hintText: 'Password',
+                            hintStyle: const TextStyle(color: Colors.white),
+                            prefixIcon: const Icon(
                               Icons.lock,
-                              color: Colors.blue,
+                              color: Colors.white,
                             ),
-                            labelText: 'Password',
-                            labelStyle: TextStyle(color: Colors.blue),
-                            border: OutlineInputBorder(),
                             enabledBorder: OutlineInputBorder(
-                              borderSide:
-                                  BorderSide(color: Colors.blue, width: 1.0),
+                              borderRadius: BorderRadius.circular(30),
+                              borderSide: const BorderSide(
+                                  color: Colors.white, width: 1.0),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(30),
+                              borderSide: const BorderSide(
+                                  color: Colors.white, width: 2.0),
                             ),
                           ),
                         ),
                       ),
-                      const SizedBox(
-                        height: 20,
-                      ),
+                      // const SizedBox(
+                      //   height: 20,
+                      // ),
                       PostButton(
-                        name: 'Login',
+                        name: 'LOGIN',
+                        textColor: Colors.blue,
                         onPressed: () async {
                           String email = emailController.text.trim();
                           String password = passwordController.text.trim();
@@ -155,7 +171,7 @@ class _LoginPageState extends State<LoginPage> {
                             progressDialog.dismiss();
                           }
                         },
-                        color: Colors.blue,
+                        color: Colors.white,
                       ),
                       TextButton(
                         onPressed: () {
@@ -164,6 +180,7 @@ class _LoginPageState extends State<LoginPage> {
                         child: const Text(
                           'Belum punya akun? Register',
                           style: TextStyle(
+                            color: Colors.white,
                             decoration: TextDecoration.underline,
                           ),
                         ),

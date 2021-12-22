@@ -68,131 +68,116 @@ class _DetailPageState extends State<DetailPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => MapsLauncher.launchQuery(
-            widget.wisata.name + ' ' + widget.wisata.province),
-        child: const Icon(Icons.map),
-        backgroundColor: primaryColor,
-      ),
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            // mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Stack(
-                clipBehavior: Clip.none,
-                children: [
-                  Hero(
-                    tag: widget.wisata.urlImage,
-                    child: ClipRRect(
-                      borderRadius: const BorderRadius.only(
-                        bottomLeft: Radius.circular(20.0),
-                        bottomRight: Radius.circular(20.0),
-                      ),
-                      child: CachedNetworkImage(
-                        imageUrl: widget.wisata.urlImage,
-                        placeholder: (context, url) => const SizedBox(
-                          child: DecoratedBox(
-                            decoration: BoxDecoration(
-                              color: Colors.grey,
-                            ),
-                          ),
-                        ),
-                        errorWidget: (context, url, error) =>
-                            const Icon(Icons.dangerous_rounded),
-                        fit: BoxFit.fill,
-                        width: MediaQuery.of(context).size.width * 1,
-                        height: 300,
-                      ),
+    return SafeArea(
+      child: Scaffold(
+        body: CustomScrollView(
+          slivers: [
+            SliverAppBar(
+              pinned: true,
+              expandedHeight: 200,
+              flexibleSpace: FlexibleSpaceBar(
+                title: Text(
+                  widget.wisata.name,
+                  textAlign: TextAlign.start,
+                ),
+                centerTitle: true,
+                background: DecoratedBox(
+                  position: DecorationPosition.foreground,
+                  decoration: const BoxDecoration(
+                    gradient: LinearGradient(
+                      begin: Alignment.bottomCenter,
+                      end: Alignment.center,
+                      colors: [
+                        primaryColor,
+                        Colors.transparent,
+                      ],
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
+                  child: Hero(
+                    tag: widget.wisata.urlImage,
+                    child: Image.network(
+                      widget.wisata.urlImage,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            SliverToBoxAdapter(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  //Location
+                  Container(
+                    padding: const EdgeInsets.only(top: 12, left: 12.0),
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        CircleAvatar(
-                          backgroundColor: Colors.white,
-                          child: IconButton(
-                              icon: const Icon(
-                                Icons.arrow_back,
-                                color: Colors.black,
-                              ),
-                              onPressed: () {
-                                Navigator.pop(context);
-                              }),
-                        ),
-                        CircleAvatar(
-                          backgroundColor: Colors.white,
-                          child: FavoriteButton(wisata: widget.wisata),
+                        const Icon(Icons.location_on_outlined),
+                        Text(
+                          widget.wisata.province,
+                          style: Theme.of(context).textTheme.subtitle1,
                         ),
                       ],
                     ),
                   ),
+
+                  //Category Card
+                  Container(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                    height: 48,
+                    child: Card(
+                      color: primaryColor,
+                      margin: const EdgeInsets.all(2.0),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                      elevation: 3.0,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          widget.wisata.category,
+                          style: const TextStyle(color: secondaryColor),
+                        ),
+                      ),
+                    ),
+                  ),
+
+                  //Deskripsi Title
+                  Container(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                    child: Text(
+                      'Description',
+                      style: Theme.of(context).textTheme.headline6,
+                    ),
+                  ),
+
+                  //Deskripsi Isi
+                  Container(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                    child: Text(
+                      widget.wisata.description,
+                      style: Theme.of(context).textTheme.bodyText2,
+                      softWrap: true,
+                      textAlign: TextAlign.justify,
+                    ),
+                  ),
+                  _map(),
                 ],
               ),
-              Container(
-                padding: const EdgeInsets.only(left: 8.0),
-                margin: const EdgeInsets.only(top: 8.0),
-                child: Text(
-                  widget.wisata.name,
-                  style: Theme.of(context).textTheme.headline5,
-                ),
-              ),
-              const SizedBox(height: 5),
-              Container(
-                padding: const EdgeInsets.only(left: 8.0, bottom: 4.0),
-                child: Row(
-                  children: [
-                    const Icon(Icons.location_on_outlined),
-                    Text(
-                      widget.wisata.province,
-                      style: Theme.of(context).textTheme.subtitle1,
-                    ),
-                  ],
-                ),
-              ),
-              Container(
-                padding: const EdgeInsets.all(4.0),
-                height: 50,
-                child: Card(
-                  color: primaryColor,
-                  margin: const EdgeInsets.all(4.0),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10.0),
-                  ),
-                  elevation: 3.0,
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      widget.wisata.category,
-                      style: const TextStyle(color: secondaryColor),
-                    ),
-                  ),
-                ),
-              ),
-              Container(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  'Description',
-                  style: Theme.of(context).textTheme.headline6,
-                ),
-              ),
-              Container(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  widget.wisata.description,
-                  style: Theme.of(context).textTheme.bodyText2,
-                  softWrap: true,
-                  textAlign: TextAlign.justify,
-                ),
-              ),
-              const SizedBox(height: 8.0),
-              _map(),
-            ],
-          ),
+            )
+          ],
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () => MapsLauncher.launchCoordinates(
+              double.parse(widget.wisata.latitude),
+              double.parse(widget.wisata.longitude),
+              widget.wisata.name),
+          child: const Icon(Icons.map),
+          backgroundColor: primaryColor,
         ),
       ),
     );

@@ -215,6 +215,7 @@ class _AddReviewPageState extends State<AddReviewPage> {
                       ),
                       PostButton(
                           name: 'Post Data',
+                          textColor: Colors.white,
                           onPressed: () async {
                             ProgressDialog progressDialog = ProgressDialog(
                               context,
