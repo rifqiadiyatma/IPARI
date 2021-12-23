@@ -34,6 +34,7 @@ class _ReviewPageState extends State<ReviewPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: const Text('Explore'),
         elevation: 0,
         backgroundColor: primaryColor,

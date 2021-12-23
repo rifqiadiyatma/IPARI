@@ -69,278 +69,168 @@ class _DetailPageState extends State<DetailPage> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: CustomScrollView(
-          slivers: [
-            SliverAppBar(
-              pinned: true,
-              expandedHeight: 200,
-              flexibleSpace: FlexibleSpaceBar(
-                title: Text(
-                  widget.wisata.name,
-                  textAlign: TextAlign.start,
-                ),
-                centerTitle: true,
-                background: DecoratedBox(
-                  position: DecorationPosition.foreground,
-                  decoration: const BoxDecoration(
-                    gradient: LinearGradient(
-                      begin: Alignment.bottomCenter,
-                      end: Alignment.center,
-                      colors: [
-                        primaryColor,
-                        Colors.transparent,
-                      ],
-                    ),
+    return Scaffold(
+      body: CustomScrollView(
+        slivers: [
+          SliverAppBar(
+            pinned: true,
+            expandedHeight: 200,
+            flexibleSpace: FlexibleSpaceBar(
+              title: Text(
+                widget.wisata.name,
+                textAlign: TextAlign.start,
+              ),
+              centerTitle: true,
+              background: DecoratedBox(
+                position: DecorationPosition.foreground,
+                decoration: const BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.bottomCenter,
+                    end: Alignment.center,
+                    colors: [
+                      primaryColor,
+                      Colors.transparent,
+                    ],
                   ),
-                  child: Hero(
-                    tag: widget.wisata.urlImage,
-                    child: Image.network(
-                      widget.wisata.urlImage,
-                      fit: BoxFit.fill,
-                    ),
+                ),
+                child: Hero(
+                  tag: widget.wisata.urlImage,
+                  child: Image.network(
+                    widget.wisata.urlImage,
+                    fit: BoxFit.fill,
                   ),
                 ),
               ),
             ),
-            SliverToBoxAdapter(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  //Category Card
-                  Container(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                    height: 48,
+          ),
+          SliverToBoxAdapter(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                //Category Card
+                Container(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                  height: 48,
+                  child: Card(
+                    color: primaryColor,
+                    margin: const EdgeInsets.all(2.0),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                    elevation: 3.0,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        widget.wisata.category,
+                        style: const TextStyle(color: secondaryColor),
+                      ),
+                    ),
+                  ),
+                ),
+
+                //Deskripsi Title
+                Container(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                  child: Text(
+                    'Description',
+                    style: Theme.of(context).textTheme.headline6,
+                  ),
+                ),
+
+                //Deskripsi Isi
+                Container(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                  child: Text(
+                    widget.wisata.description,
+                    style: Theme.of(context).textTheme.bodyText2,
+                    softWrap: true,
+                    textAlign: TextAlign.justify,
+                  ),
+                ),
+
+                const SizedBox(
+                  height: 20,
+                ),
+
+                //Maps Title
+                Container(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                  child: Text(
+                    'Map',
+                    style: Theme.of(context).textTheme.headline6,
+                  ),
+                ),
+                Container(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                  height: MediaQuery.of(context).size.height * 0.8,
+                  child: SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.9,
                     child: Card(
-                      color: primaryColor,
-                      margin: const EdgeInsets.all(2.0),
+                      color: Colors.blue,
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.0),
+                        borderRadius: BorderRadius.circular(8.0),
                       ),
-                      elevation: 3.0,
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text(
-                          widget.wisata.category,
-                          style: const TextStyle(color: secondaryColor),
-                        ),
-                      ),
-                    ),
-                  ),
-
-                  //Deskripsi Title
-                  Container(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                    child: Text(
-                      'Description',
-                      style: Theme.of(context).textTheme.headline6,
-                    ),
-                  ),
-
-                  //Deskripsi Isi
-                  Container(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                    child: Text(
-                      widget.wisata.description,
-                      style: Theme.of(context).textTheme.bodyText2,
-                      softWrap: true,
-                      textAlign: TextAlign.justify,
-                    ),
-                  ),
-
-                  const SizedBox(
-                    height: 20,
-                  ),
-
-                  //Funfact Title
-                  Container(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                    child: Text(
-                      'Fun Fact',
-                      style: Theme.of(context).textTheme.headline6,
-                    ),
-                  ),
-                  Container(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                    height: MediaQuery.of(context).size.height * 0.50,
-                    child: ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      itemCount: numbers.length,
-                      itemBuilder: (context, index) {
-                        return SizedBox(
-                          width: MediaQuery.of(context).size.width * 0.6,
-                          child: Card(
-                            color: Colors.blue,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8.0),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          ClipRRect(
+                            borderRadius: const BorderRadius.only(
+                              topLeft: Radius.circular(8.0),
+                              topRight: Radius.circular(8.0),
                             ),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.stretch,
-                              children: [
-                                ClipRRect(
-                                  borderRadius: const BorderRadius.only(
-                                    topLeft: Radius.circular(8.0),
-                                    topRight: Radius.circular(8.0),
-                                  ),
-                                  child: Image.asset(
-                                    'assets/imgSample.jpg',
-                                    height: 180,
-                                    fit: BoxFit.fill,
-                                  ),
-                                ),
-                                const Padding(
-                                  padding: EdgeInsets.symmetric(
-                                      horizontal: 12.0, vertical: 8),
-                                  child: Text(
-                                    "Penjelasan Funfact",
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 14,
-                                    ),
-                                  ),
-                                )
-                              ],
-                            ),
+                            // child: SizedBox(
+                            //   'assets/imgSample.jpg',
+                            //   height: 400,
+                            //   fit: BoxFit.cover,
+                            // ),
+                            child: _map(),
                           ),
-                        );
-                      },
-                    ),
-                  ),
-
-                  const SizedBox(
-                    height: 20,
-                  ),
-
-                  //Maps Title
-                  Container(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                    child: Text(
-                      'Map',
-                      style: Theme.of(context).textTheme.headline6,
-                    ),
-                  ),
-                  Container(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                    height: MediaQuery.of(context).size.height * 0.8,
-                    child: ListView(
-                      scrollDirection: Axis.horizontal,
-                      children: <Widget>[
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width * 0.9,
-                          child: Card(
-                            color: Colors.blue,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 12.0, vertical: 0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                ClipRRect(
-                                  borderRadius: const BorderRadius.only(
-                                    topLeft: Radius.circular(8.0),
-                                    topRight: Radius.circular(8.0),
-                                  ),
-                                  // child: SizedBox(
-                                  //   'assets/imgSample.jpg',
-                                  //   height: 400,
-                                  //   fit: BoxFit.cover,
-                                  // ),
-                                  child: _map(),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 12.0, vertical: 0),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      Row(
-                                        children: [
-                                          const Icon(
-                                            Icons.location_on_outlined,
-                                            color: Colors.white,
-                                          ),
-                                          Text(
-                                            widget.wisata.province,
-                                            style: const TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 14,
-                                            ),
-                                          ),
-                                        ],
+                                Row(
+                                  children: [
+                                    const Icon(
+                                      Icons.location_on_outlined,
+                                      color: Colors.white,
+                                    ),
+                                    Text(
+                                      widget.wisata.province,
+                                      style: const TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 14,
                                       ),
-                                      SizedBox(
-                                        width: 45,
-                                        height: 45,
-                                        child: TextButton(
-                                          style: TextButton.styleFrom(
-                                            backgroundColor: Colors.white,
-                                            shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(30),
-                                            ),
-                                          ),
-                                          onPressed: () =>
-                                              MapsLauncher.launchCoordinates(
-                                                  double.parse(
-                                                      widget.wisata.latitude),
-                                                  double.parse(
-                                                      widget.wisata.longitude),
-                                                  widget.wisata.name),
-                                          child: const Icon(Icons.map),
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                                const SizedBox(
-                                  height: 4,
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width * 0.9,
-                          child: Card(
-                            color: Colors.blue,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.stretch,
-                              children: [
-                                ClipRRect(
-                                  borderRadius: const BorderRadius.only(
-                                    topLeft: Radius.circular(8.0),
-                                    topRight: Radius.circular(8.0),
-                                  ),
-                                  child: Image.asset(
-                                    'assets/imgSample.jpg',
-                                    height: 380,
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                                const Padding(
-                                  padding: EdgeInsets.symmetric(
-                                      horizontal: 12.0, vertical: 8),
-                                  child: Text(
-                                    "Penjelasan Funfact",
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 14,
                                     ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  width: 45,
+                                  height: 45,
+                                  child: TextButton(
+                                    style: TextButton.styleFrom(
+                                      backgroundColor: Colors.white,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(30),
+                                      ),
+                                    ),
+                                    onPressed: () =>
+                                        MapsLauncher.launchCoordinates(
+                                            double.parse(
+                                                widget.wisata.latitude),
+                                            double.parse(
+                                                widget.wisata.longitude),
+                                            widget.wisata.name),
+                                    child: const Icon(Icons.map),
                                   ),
                                 ),
                                 const SizedBox(
@@ -349,47 +239,23 @@ class _DetailPageState extends State<DetailPage> {
                               ],
                             ),
                           ),
-                        ),
-                      ],
-                    ),
-                  ),
-
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 16.0, vertical: 20),
-                    child: TextButton(
-                      style: TextButton.styleFrom(backgroundColor: Colors.blue),
-                      onPressed: () => showDialog<String>(
-                        context: context,
-                        builder: (BuildContext contex) => const AlertDialog(
-                          title: Text("Sumber"),
-                          content: Text("Sumber"),
-                        ),
-                      ),
-                      child: const Text(
-                        "Source",
-                        style: TextStyle(color: Colors.white),
+                          const SizedBox(
+                            height: 4,
+                          ),
+                        ],
                       ),
                     ),
                   ),
-                ],
-              ),
-            )
-          ],
-        ),
-        floatingActionButton: FloatingActionButton(
-          child: FavoriteButton(wisata: widget.wisata),
-          backgroundColor: primaryColor,
-          onPressed: () {},
-        ),
-        // floatingActionButton: FloatingActionButton(
-        //   onPressed: () => MapsLauncher.launchCoordinates(
-        //       double.parse(widget.wisata.latitude),
-        //       double.parse(widget.wisata.longitude),
-        //       widget.wisata.name),
-        //   child: const Icon(Icons.map),
-        //   backgroundColor: primaryColor,
-        // ),
+                ),
+              ],
+            ),
+          )
+        ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: FavoriteButton(wisata: widget.wisata),
+        backgroundColor: primaryColor,
+        onPressed: () {},
       ),
     );
   }
