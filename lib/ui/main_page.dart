@@ -138,7 +138,7 @@ class MainPage extends StatelessWidget {
       onTap: () =>
           Navigator.pushNamed(context, DetailPage.routeName, arguments: wisata),
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 6.0, vertical: 4.0),
+        padding: const EdgeInsets.all(8),
         child: Card(
           elevation: 2.0,
           color: secondaryColor,
@@ -152,7 +152,10 @@ class MainPage extends StatelessWidget {
                 child: Hero(
                   tag: wisata.urlImage,
                   child: ClipRRect(
-                    borderRadius: BorderRadius.circular(8.0),
+                    borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(8),
+                      topRight: Radius.circular(8),
+                    ),
                     child: CachedNetworkImage(
                       imageUrl: wisata.urlImage,
                       placeholder: (context, url) => const SizedBox(

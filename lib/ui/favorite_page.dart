@@ -70,6 +70,8 @@ class FavoritePage extends StatelessWidget {
           return const Center(child: CircularProgressIndicator());
         } else if (provider.state == ResultState.hasData) {
           return ListView.builder(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
             itemCount: provider.favorites.length,
             itemBuilder: (context, index) {
               return _buildWisataItem(context, provider.favorites[index]);
@@ -90,17 +92,16 @@ class FavoritePage extends StatelessWidget {
   Widget _buildWisataItem(BuildContext context, Wisata wisata) {
     return Card(
       elevation: 2.0,
-      margin: const EdgeInsets.fromLTRB(12.0, 4.0, 12.0, 4.0),
+      margin: const EdgeInsets.fromLTRB(12.0, 6.0, 12.0, 6.0),
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(8.0),
+        borderRadius: BorderRadius.circular(6.0),
       ),
       child: ListTile(
-        contentPadding:
-            const EdgeInsets.symmetric(vertical: 8.0, horizontal: 4.0),
+        contentPadding: const EdgeInsets.symmetric(horizontal: 8.0),
         leading: Hero(
           tag: wisata.urlImage,
           child: ClipRRect(
-            borderRadius: BorderRadius.circular(8.0),
+            borderRadius: BorderRadius.circular(6.0),
             child: CachedNetworkImage(
               imageUrl: wisata.urlImage,
               placeholder: (context, url) => const SizedBox(
@@ -123,7 +124,11 @@ class FavoritePage extends StatelessWidget {
               wisata.name.toUpperCase(),
               overflow: TextOverflow.ellipsis,
               maxLines: 1,
-              style: Theme.of(context).textTheme.bodyText1,
+              style: const TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.w500,
+                color: Colors.black,
+              ),
             ),
           ],
         ),
@@ -132,6 +137,8 @@ class FavoritePage extends StatelessWidget {
           children: [
             const Icon(
               Icons.location_on_outlined,
+              size: 16,
+              color: Colors.black,
             ),
             Text(
               wisata.province,
