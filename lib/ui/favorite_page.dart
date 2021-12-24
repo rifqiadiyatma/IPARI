@@ -21,22 +21,23 @@ class FavoritePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: bgColor,
-      // body: _buildList(),
-      body: SingleChildScrollView(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            const SizedBox(
-              height: 42,
-            ),
-            _favHead(),
-            const SizedBox(
-              height: 24,
-            ),
-            _buildList()
-            // _buildList(),
-          ],
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              const SizedBox(
+                height: 24,
+              ),
+              _favHead(),
+              const SizedBox(
+                height: 24,
+              ),
+              _buildList()
+              // _buildList(),
+            ],
+          ),
         ),
       ),
     );
@@ -47,7 +48,7 @@ class FavoritePage extends StatelessWidget {
       children: [
         Image.asset(
           'assets/Ilove.png',
-          height: 140,
+          height: 100,
         ),
         const SizedBox(
           height: 12,

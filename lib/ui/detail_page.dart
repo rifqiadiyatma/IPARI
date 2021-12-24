@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:ipari/common/styles.dart';
 import 'package:ipari/data/model/wisata.dart';
@@ -30,7 +29,6 @@ class _DetailPageState extends State<DetailPage> {
   late CameraPosition _detailPosition;
   final Completer<GoogleMapController> _controller = Completer();
   final Set<Marker> _markers = {};
-  final List<int> numbers = [1, 2, 3, 5, 8, 13, 21, 34, 55];
 
   @override
   void initState() {
@@ -76,9 +74,12 @@ class _DetailPageState extends State<DetailPage> {
             pinned: true,
             expandedHeight: 200,
             flexibleSpace: FlexibleSpaceBar(
-              title: Text(
-                widget.wisata.name,
-                textAlign: TextAlign.start,
+              title: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  widget.wisata.name,
+                  textAlign: TextAlign.start,
+                ),
               ),
               centerTitle: true,
               background: DecoratedBox(
@@ -166,9 +167,10 @@ class _DetailPageState extends State<DetailPage> {
                   ),
                 ),
                 Container(
+                  alignment: Alignment.center,
                   padding:
                       const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                  height: MediaQuery.of(context).size.height * 0.8,
+                  height: MediaQuery.of(context).size.height * 0.7,
                   child: SizedBox(
                     width: MediaQuery.of(context).size.width * 0.9,
                     child: Card(
@@ -184,34 +186,30 @@ class _DetailPageState extends State<DetailPage> {
                               topLeft: Radius.circular(8.0),
                               topRight: Radius.circular(8.0),
                             ),
-                            // child: SizedBox(
-                            //   'assets/imgSample.jpg',
-                            //   height: 400,
-                            //   fit: BoxFit.cover,
-                            // ),
                             child: _map(),
                           ),
                           Padding(
                             padding: const EdgeInsets.symmetric(
                                 horizontal: 12.0, vertical: 0),
                             child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Row(
-                                  children: [
-                                    const Icon(
-                                      Icons.location_on_outlined,
-                                      color: Colors.white,
-                                    ),
-                                    Text(
-                                      widget.wisata.province,
-                                      style: const TextStyle(
+                                Expanded(
+                                  child: Row(
+                                    children: [
+                                      const Icon(
+                                        Icons.location_on_outlined,
                                         color: Colors.white,
-                                        fontSize: 14,
                                       ),
-                                    ),
-                                  ],
+                                      Text(
+                                        widget.wisata.province,
+                                        style: const TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 14,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
                                 SizedBox(
                                   width: 45,
@@ -223,18 +221,12 @@ class _DetailPageState extends State<DetailPage> {
                                         borderRadius: BorderRadius.circular(30),
                                       ),
                                     ),
-                                    onPressed: () =>
-                                        MapsLauncher.launchCoordinates(
-                                            double.parse(
-                                                widget.wisata.latitude),
-                                            double.parse(
-                                                widget.wisata.longitude),
-                                            widget.wisata.name),
+                                    onPressed: () => MapsLauncher.launchQuery(
+                                        widget.wisata.name +
+                                            ' ' +
+                                            widget.wisata.province),
                                     child: const Icon(Icons.map),
                                   ),
-                                ),
-                                const SizedBox(
-                                  height: 4,
                                 ),
                               ],
                             ),
