@@ -34,8 +34,7 @@ class FavoritePage extends StatelessWidget {
               const SizedBox(
                 height: 24,
               ),
-              _buildList()
-              // _buildList(),
+              _buildList(),
             ],
           ),
         ),
