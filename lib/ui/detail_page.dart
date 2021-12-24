@@ -170,7 +170,6 @@ class _DetailPageState extends State<DetailPage> {
                   alignment: Alignment.center,
                   padding:
                       const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                  height: MediaQuery.of(context).size.height * 0.7,
                   child: SizedBox(
                     width: MediaQuery.of(context).size.width * 0.9,
                     child: Card(
@@ -192,47 +191,46 @@ class _DetailPageState extends State<DetailPage> {
                             padding: const EdgeInsets.symmetric(
                                 horizontal: 12.0, vertical: 0),
                             child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                Expanded(
-                                  child: Row(
-                                    children: [
-                                      const Icon(
-                                        Icons.location_on_outlined,
-                                        color: Colors.white,
-                                      ),
-                                      Text(
-                                        widget.wisata.province,
-                                        style: const TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 14,
-                                        ),
-                                      ),
-                                    ],
+                                const Icon(
+                                  Icons.location_on_outlined,
+                                  color: Colors.white,
+                                ),
+                                Text(
+                                  widget.wisata.province,
+                                  style: const TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 14,
                                   ),
                                 ),
-                                SizedBox(
-                                  width: 45,
-                                  height: 45,
-                                  child: TextButton(
-                                    style: TextButton.styleFrom(
-                                      backgroundColor: Colors.white,
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(30),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      vertical: 8.0, horizontal: 16.0),
+                                  child: SizedBox(
+                                    width: 45,
+                                    height: 45,
+                                    child: TextButton(
+                                      style: TextButton.styleFrom(
+                                        backgroundColor: Colors.white,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(30),
+                                        ),
                                       ),
+                                      onPressed: () => MapsLauncher.launchQuery(
+                                          widget.wisata.name +
+                                              ' ' +
+                                              widget.wisata.province),
+                                      child: const Icon(Icons.map),
                                     ),
-                                    onPressed: () => MapsLauncher.launchQuery(
-                                        widget.wisata.name +
-                                            ' ' +
-                                            widget.wisata.province),
-                                    child: const Icon(Icons.map),
                                   ),
                                 ),
                               ],
                             ),
                           ),
                           const SizedBox(
-                            height: 4,
+                            height: 10,
                           ),
                         ],
                       ),
