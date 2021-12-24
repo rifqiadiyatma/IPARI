@@ -74,12 +74,9 @@ class _DetailPageState extends State<DetailPage> {
             pinned: true,
             expandedHeight: 200,
             flexibleSpace: FlexibleSpaceBar(
-              title: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  widget.wisata.name,
-                  textAlign: TextAlign.start,
-                ),
+              title: Text(
+                widget.wisata.name,
+                textAlign: TextAlign.start,
               ),
               centerTitle: true,
               background: DecoratedBox(
@@ -170,7 +167,7 @@ class _DetailPageState extends State<DetailPage> {
                   alignment: Alignment.center,
                   padding:
                       const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                  height: MediaQuery.of(context).size.height * 0.7,
+                  height: MediaQuery.of(context).size.height * 0.8,
                   child: SizedBox(
                     width: MediaQuery.of(context).size.width * 0.9,
                     child: Card(
@@ -192,25 +189,8 @@ class _DetailPageState extends State<DetailPage> {
                             padding: const EdgeInsets.symmetric(
                                 horizontal: 12.0, vertical: 0),
                             child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              // mainAxisAlignment: Axis.horizontal.start,
                               children: [
-                                Expanded(
-                                  child: Row(
-                                    children: [
-                                      const Icon(
-                                        Icons.location_on_outlined,
-                                        color: Colors.white,
-                                      ),
-                                      Text(
-                                        widget.wisata.province,
-                                        style: const TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 14,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
                                 SizedBox(
                                   width: 45,
                                   height: 45,
@@ -226,6 +206,26 @@ class _DetailPageState extends State<DetailPage> {
                                             ' ' +
                                             widget.wisata.province),
                                     child: const Icon(Icons.map),
+                                  ),
+                                ),
+                                const SizedBox(
+                                  width: 12,
+                                ),
+                                Expanded(
+                                  child: Row(
+                                    children: [
+                                      const Icon(
+                                        Icons.location_on_outlined,
+                                        color: Colors.white,
+                                      ),
+                                      Text(
+                                        widget.wisata.province,
+                                        style: const TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 14,
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ),
                               ],
