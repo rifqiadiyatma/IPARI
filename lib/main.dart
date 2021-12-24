@@ -19,6 +19,7 @@ import 'package:ipari/ui/register_page.dart';
 import 'package:ipari/ui/review_page.dart';
 import 'package:ipari/ui/splash_screen.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter/services.dart';
 
 /*
   Credits this screen
@@ -28,8 +29,13 @@ import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
   await Firebase.initializeApp();
-  runApp(const MyApp());
+
+  SystemChrome.setPreferredOrientations(
+      [DeviceOrientation.portraitDown, DeviceOrientation.portraitUp]).then((_) {
+    runApp(const MyApp());
+  });
 }
 
 class MyApp extends StatelessWidget {

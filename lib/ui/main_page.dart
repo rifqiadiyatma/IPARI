@@ -7,7 +7,6 @@ import 'package:ipari/ui/detail_page.dart';
 import 'package:ipari/utils/result_state.dart';
 import 'package:provider/provider.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-
 /*
   Credit this Screen
   Cached Network Image => https://pub.dev/packages/cached_network_image
