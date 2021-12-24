@@ -167,7 +167,7 @@ class _DetailPageState extends State<DetailPage> {
                   alignment: Alignment.center,
                   padding:
                       const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                  height: MediaQuery.of(context).size.height * 0.8,
+                  height: MediaQuery.of(context).size.height * 0.6,
                   child: SizedBox(
                     width: MediaQuery.of(context).size.width * 0.9,
                     child: Card(

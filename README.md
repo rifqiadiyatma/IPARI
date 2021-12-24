@@ -29,15 +29,15 @@ __API__ - [IPARI API](https://ipariwisata.000webhostapp.com/) dihosting mengguna
 ### 📷 Tampilan Aplikasi
 Splash Screen | Login | Register | Main
 :----------:|:----------:|:-------------:|:----------:
-<img src="assets/Logo Background Putih.png" width=200/> | <img src="assets/Logo Background Putih.png" width=200/> | <img src="assets/Logo Background Putih.png" width=200/> | <img src="assets/Logo Background Putih.png" width=200/>
+<img src="Screen Shoot/Splash Screen.png" width=200/> | <img src="Screen Shoot/Login.png" width=200/> | <img src="Screen Shoot/Register.png" width=200/> | <img src="Screen Shoot/Main.png" width=200/>
 
 Detail Wisata | Favorite | Review | Detail Review
 :----------:|:----------:|:-------------:|:----------:
-<img src="assets/Logo Background Putih.png" width=200/> | <img src="assets/Logo Background Putih.png" width=200/> | <img src="assets/Logo Background Putih.png" width=200/> | <img src="assets/Logo Background Putih.png" width=200/>
+<img src="Screen Shoot/Detail Wisata.png" width=200/> | <img src="Screen Shoot/Favorite.png" width=200/> | <img src="Screen Shoot/Review.png" width=200/> | <img src="Screen Shoot/Detail Review.png" width=200/>
 
 Tambah Review | Profil | Ganti Password | About 
 :----------:|:----------:|:-------------:|:----------:
-<img src="assets/Logo Background Putih.png" width=200/> | <img src="assets/Logo Background Putih.png" width=200/> | <img src="assets/Logo Background Putih.png" width=200/> | <img src="assets/Logo Background Putih.png" width=200/>
+<img src="Screen Shoot/Tambah Review.png" width=200/> | <img src="Screen Shoot/Profil.png" width=200/> | <img src="Screen Shoot/Ganti Password.png" width=200/> | <img src="Screen Shoot/About.png" width=200/>
 
 ### 🧑‍🤝‍🧑 Dibuat oleh
 #### Tim CSD-175
